@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "react": "^16.3.0-alpha.1",
-    "react-native": "0.54.4"
+    "react-native": "0.54.4",
+    "realm": "^2.3.3"
   },
   "devDependencies": {
+    "babel-core": "^7.0.0-beta.38",
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
     "jest": "22.4.3",
