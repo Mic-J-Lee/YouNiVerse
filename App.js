@@ -11,6 +11,7 @@ import {
   Text,
   View
 } from 'react-native';
+import Child from './Child'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' +
@@ -23,7 +24,8 @@ type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1}}>
+        <Child color='green'/>
         <Text style={styles.welcome}>
           Welcome to React Native!
         </Text>
@@ -46,11 +48,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
+    flex: 1,
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
   },
   instructions: {
+    flex: 1,
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
