@@ -1,0 +1,47 @@
+import React, { Component } from 'react'
+import { Alert, Animated, PanResponder, View } from 'react-native'
+import { getRainbow, toggleStripe, setActiveColor } from '../../realm/Revolutions'
+
+export default class Stripe extends Component {
+
+  state = {
+    touched: false
+  }
+
+  componentWillMount() {
+    this.springValue = new Animated.Value(1)
+    this.panResponder = PanResponder.create({
+      onMoveShouldSetPanResponder:(evt, gestureState) => true,
+      onPanResponderMove: (evt, gestureState) => {
+        this.setState({touched:true})
+        //should set some sort of visual feedback
+      },
+      onPanResponderRelease: (evt, gestureState) => {
+        const { color, isActive, isEnabled, realm } = this.props
+
+        const orientation = realm && realm.objects('Game')[0].orientation
+        const dyOrDx = orientation == 'portrait' ? 'dy' : 'dx'
+        const sideToSide = dyOrDx == 'dx' ? 'dy' : 'dx'
+        if (gestureState[dyOrDx] > 30 && isEnabled) {
+          setActiveColor(realm, color)
+        } else if (gestureState[sideToSide] < 30 && gestureState[sideToSide] > -30 && !isActive) toggleStripe(realm, color)
+        this.setState({touched:false})
+      }
+    })
+  }
+
+  render() {
+    const { realm, displayedColor, isActive } = this.props
+    const orientation = realm && realm.objects('Game')[0].orientation
+    const isPortrait = orientation == 'portrait'
+    return (
+      <View style={{
+        flex: 1,
+        flexDirection: isPortrait ? 'row' : 'column', backgroundColor: displayedColor,
+        width: !isPortrait && isActive ? '100%' : '80%',
+        height: isPortrait && isActive ? '100%' : '80%'
+        }} {...this.panResponder.panHandlers}>
+      </View>
+    )
+  }
+}
