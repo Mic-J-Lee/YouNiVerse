@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native'
 import { GameSchema, UserSchema } from './realm/Schema'
 import RainbowCard from './components/RainbowCard/RainbowCard'
-import { nextColor, //delete
-setOrientation } from './realm/Revolutions'
+import { nextColor } from './realm/revolutions/rainbowCardRevolutions' //delete
+import { setOrientation } from './realm/revolutions/appRevolutions'
 const Realm = require('realm')
 
 type Props = {}
@@ -43,8 +43,7 @@ deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUC
         <View style={{
             flex: 13,
             flexDirection: orientation == 'landscape' ? 'row' : 'column',
-            backgroundColor: 'powderblue'
-          }}>
+            backgroundColor: 'powderblue'}}>
           {/* <Clouds /> */}
           <RainbowCard realm={realm} />
           {/* {this.state.menu && menu} */}

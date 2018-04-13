@@ -20,17 +20,18 @@ export default class Rainbow extends Component {
       let fadedColor = fadedColors[i]
       let isEnabled = realm && realm.objects('Game')[0][color]
       allStripes.push(
-        <Stripe key={color} 
+        <Stripe key={color}
                 realm={realm}
                 color={color}
                 displayedColor={isEnabled == true ? color : fadedColor} 
                 isActive={realm && realm.objects('Game')[0].activeColor == color}
-                isEnabled={isEnabled} />
+                isEnabled={isEnabled}
+        />
       )
     }
     return (
       <View style={{
-        flex: 6, 
+        flex: 6,
         flexDirection: isPortrait ? 'row' : 'column'}}>
         {allStripes}
       </View>

@@ -1,4 +1,4 @@
-import { Alert, Dimensions } from 'react-native'
+import { Alert } from 'react-native'
 
 export const getRainbow = (realm) => {
   if (!realm) return
@@ -35,17 +35,6 @@ export const setActiveColor = (realm, color) => {
   if (!realm.objects('Game')[0][color]) return
   realm.write(() => {
     realm.objects('Game')[0].activeColor = color
-  })
-}
-
-export const setOrientation = (realm) => {
-  if (!realm) return
-  const dimensions = Dimensions.get('screen')
-  const orientation = dimensions.height < dimensions.width ? 'landscape' : 'portrait'
-  realm.write(() => {
-    realm.objects('Game')[0].screenHeight = dimensions.height
-    realm.objects('Game')[0].screenWidth = dimensions.width
-    realm.objects('Game')[0].orientation = orientation
   })
 }
 
