@@ -13,17 +13,18 @@ export const UserSchema = {
 export const GameSchema = {
   name: 'Game',
   properties: {
+    red:          {type: 'bool',   default: true},
+    orange:       {type: 'bool',   default: true},
+    yellow:       {type: 'bool',   default: true},
+    green:        {type: 'bool',   default: true},
+    blue:         {type: 'bool',   default: true},
+    purple:       {type: 'bool',   default: true},
     activeColor:  {type: 'string', default: 'red'},
-    red:          {type: 'bool', default: true},
-    orange:       {type: 'bool', default: true},
-    yellow:       {type: 'bool', default: true},
-    green:        {type: 'bool', default: true},
-    blue:         {type: 'bool', default: true},
-    purple:       {type: 'bool', default: true},
-    user:         'User?',
-    screenHeight: {type: 'int', default: 1},
-    screenWidth:  {type: 'int', default: 0},
+    introStatus:  {type: 'string', default: 'not started'},
     orientation:  {type: 'string', default: 'portrait'},
-    introStatus:  {type: 'string', default: 'not started'}
+    screenHeight: {type: 'int',    default: 1},
+    screenWidth:  {type: 'int',    default: 0},
+    status:       {type: 'string', default: 'ready'},
+    user:         'User?'
   }
 }

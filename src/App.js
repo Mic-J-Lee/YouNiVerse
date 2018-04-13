@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native'
 import { GameSchema, UserSchema } from './realm/Schema'
 import RainbowCard from './components/RainbowCard/RainbowCard'
-import { setOrientation } from './realm/Revolutions'
+import { nextColor, //delete
+setOrientation } from './realm/Revolutions'
 const Realm = require('realm')
 
 type Props = {}
@@ -26,6 +27,7 @@ deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUC
         this.setState({ realm })
       })
       setOrientation(realm)
+      nextColor(realm) //delete
     })
     Dimensions.addEventListener('change', () => {
       let realm = this.state.realm

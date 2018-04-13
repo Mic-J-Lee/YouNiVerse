@@ -31,15 +31,16 @@ export default class Stripe extends Component {
   }
 
   render() {
-    const { realm, displayedColor, isActive } = this.props
+    const { realm, displayedColor, isActive, isEnabled } = this.props
     const orientation = realm && realm.objects('Game')[0].orientation
     const isPortrait = orientation == 'portrait'
+    const shrunkSize = isEnabled ? '80%' : '70%'
     return (
       <View style={{
         flex: 1,
         flexDirection: isPortrait ? 'row' : 'column', backgroundColor: displayedColor,
-        width: !isPortrait && isActive ? '100%' : '80%',
-        height: isPortrait && isActive ? '100%' : '80%'
+        width: !isPortrait && isActive ? '100%' : shrunkSize,
+        height: isPortrait && isActive ? '100%' : shrunkSize
         }} {...this.panResponder.panHandlers}>
       </View>
     )

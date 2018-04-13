@@ -3,16 +3,36 @@ import { Alert, Dimensions } from 'react-native'
 export const getRainbow = (realm) => {
   if (!realm) return
   let rainbow = {}
-  const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
   for (color of colors) {
     rainbow[color] = realm.objects('Game')[0][color]
   }
   return rainbow
 }
 
+export const nextColor = (realm) => {
+  if (!realm) return
+  const rainbow = getRainbow(realm)
+  const current = colors.indexOf(realm.objects('Game')[0].activeColor)
+  let next = 0
+  if (current != 5) next = current + 1
+  let nextColorIsFound = false
+  while (nextColorIsFound == false) {
+    if (rainbow[colors[next]] == true)
+      nextColorIsFound = true
+    else if (next == 5)
+      next = 0
+    else
+      next++
+  }
+  realm.write(() => {
+    realm.objects('Game')[0].activeColor = colors[next]
+  })
+  setTimeout(()=>{nextColor(realm)}, 1000) //delete
+}
+
 export const setActiveColor = (realm, color) => {
   if (!realm) return
-  if (realm.objects('Game')[0][color]) return
+  if (!realm.objects('Game')[0][color]) return
   realm.write(() => {
     realm.objects('Game')[0].activeColor = color
   })
@@ -31,6 +51,7 @@ export const setOrientation = (realm) => {
 
 export const toggleStripe = (realm, color) => {
   if (!realm) return
+  if (realm.objects('Game')[0].activeColor == color) return
   let rainbow = getRainbow(realm)
   rainbow[color] = !rainbow[color]
   if (!Object.values(rainbow).includes(true)) 
@@ -40,3 +61,4 @@ export const toggleStripe = (realm, color) => {
   })
 }
 
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
