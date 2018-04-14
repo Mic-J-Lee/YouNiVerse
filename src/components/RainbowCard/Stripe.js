@@ -9,7 +9,6 @@ export default class Stripe extends Component {
   }
 
   componentWillMount() {
-    this.springValue = new Animated.Value(1)
     this.panResponder = PanResponder.create({
       onMoveShouldSetPanResponder:(evt, gestureState) => true,
       onPanResponderMove: (evt, gestureState) => {
@@ -18,8 +17,7 @@ export default class Stripe extends Component {
       },
       onPanResponderRelease: (evt, gestureState) => {
         const { color, isActive, isEnabled, realm } = this.props
-
-        const orientation = realm && realm.objects('Game')[0].orientation
+        const orientation = realm && realm.objects('App')[0].orientation
         const dyOrDx = orientation == 'portrait' ? 'dy' : 'dx'
         const sideToSide = dyOrDx == 'dx' ? 'dy' : 'dx'
         if (gestureState[dyOrDx] > 30 && isEnabled) {
@@ -32,7 +30,7 @@ export default class Stripe extends Component {
 
   render() {
     const { realm, displayedColor, isActive, isEnabled } = this.props
-    const orientation = realm && realm.objects('Game')[0].orientation
+    const orientation = realm && realm.objects('App')[0].orientation
     const isPortrait = orientation == 'portrait'
     const shrunkSize = isEnabled ? '80%' : '70%'
     return (

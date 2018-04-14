@@ -4,7 +4,7 @@ export const getRainbow = (realm) => {
   if (!realm) return
   let rainbow = {}
   for (color of colors) {
-    rainbow[color] = realm.objects('Game')[0][color]
+    rainbow[color] = realm.objects('RainbowCard')[0][color]
   }
   return rainbow
 }
@@ -12,7 +12,7 @@ export const getRainbow = (realm) => {
 export const nextColor = (realm) => {
   if (!realm) return
   const rainbow = getRainbow(realm)
-  const current = colors.indexOf(realm.objects('Game')[0].activeColor)
+  const current = colors.indexOf(realm.objects('RainbowCard')[0].activeColor)
   let next = 0
   if (current != 5) next = current + 1
   let nextColorIsFound = false
@@ -25,28 +25,29 @@ export const nextColor = (realm) => {
       next++
   }
   realm.write(() => {
-    realm.objects('Game')[0].activeColor = colors[next]
+    realm.objects('RainbowCard')[0].activeColor = colors[next]
   })
   setTimeout(()=>{nextColor(realm)}, 1000) //delete
 }
 
 export const setActiveColor = (realm, color) => {
   if (!realm) return
-  if (!realm.objects('Game')[0][color]) return
+  if (!realm.objects('RainbowCard')[0][color]) return
   realm.write(() => {
-    realm.objects('Game')[0].activeColor = color
+    realm.objects('RainbowCard')[0].activeColor = color
   })
 }
 
 export const toggleStripe = (realm, color) => {
   if (!realm) return
-  if (realm.objects('Game')[0].activeColor == color) return
+  if (realm.objects('RainbowCard')[0].activeColor == color) return
   let rainbow = getRainbow(realm)
   rainbow[color] = !rainbow[color]
   if (!Object.values(rainbow).includes(true)) 
     Alert.alert('You must have at least 1 active color!')
   else realm.write(()=>{
-    realm.objects('Game')[0][color] = !realm.objects('Game')[0][color]
+    console.log('toggled!')
+    realm.objects('RainbowCard')[0][color] = !realm.objects('RainbowCard')[0][color]
   })
 }
 

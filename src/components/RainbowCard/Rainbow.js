@@ -6,7 +6,7 @@ export default class Rainbow extends Component {
 
   render() {
     const { realm } = this.props
-    const orientation = realm && realm.objects('Game')[0].orientation
+    const orientation = realm && realm.objects('App')[0].orientation
     const isPortrait = orientation == 'portrait'
     let colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
     let fadedColors = ['#ff9999', '#ffdb99', '#ffff99', '#99ffa2', '#adadff', '#ffa3ff']
@@ -18,14 +18,15 @@ export default class Rainbow extends Component {
     for (let i = 0; i < colors.length; i++) {
       let color = colors[i]
       let fadedColor = fadedColors[i]
-      let isEnabled = realm && realm.objects('Game')[0][color]
+      let isEnabled = realm && realm.objects('RainbowCard')[0][color]
       allStripes.push(
-        <Stripe key={color}
-                realm={realm}
-                color={color}
-                displayedColor={isEnabled == true ? color : fadedColor} 
-                isActive={realm && realm.objects('Game')[0].activeColor == color}
-                isEnabled={isEnabled}
+        <Stripe
+          key={color}
+          realm={realm}
+          color={color}
+          displayedColor={isEnabled == true ? color : fadedColor}
+          isActive={realm && realm.objects('RainbowCard')[0].activeColor == color}
+          isEnabled={isEnabled}
         />
       )
     }

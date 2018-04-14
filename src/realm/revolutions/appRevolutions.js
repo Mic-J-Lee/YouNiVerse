@@ -5,8 +5,8 @@ export const setOrientation = (realm) => {
   const dimensions = Dimensions.get('screen')
   const orientation = dimensions.height < dimensions.width ? 'landscape' : 'portrait'
   realm.write(() => {
-    realm.objects('Game')[0].screenHeight = dimensions.height
-    realm.objects('Game')[0].screenWidth = dimensions.width
-    realm.objects('Game')[0].orientation = orientation
+    realm.objects('App')[0].screenHeight = dimensions.height
+    realm.objects('App')[0].screenWidth = dimensions.width
+    realm.objects('App')[0].orientation = orientation
   })
 }

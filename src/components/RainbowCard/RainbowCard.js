@@ -6,7 +6,7 @@ export default class RainbowCard extends Component {
 
   render() {
     const { realm } = this.props
-    const orientation = realm && realm.objects('Game')[0].orientation
+    const orientation = realm && realm.objects('App')[0].orientation
     const isPortrait = orientation == 'portrait'
     return (
       <View style={{flex: 1, flexDirection: isPortrait ? 'column' : 'row'}}>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native'
-import { GameSchema, UserSchema } from './realm/Schema'
+import { AppSchema, RainbowCardSchema, UserSchema } from './realm/Schema'
 import RainbowCard from './components/RainbowCard/RainbowCard'
 import { nextColor } from './realm/revolutions/rainbowCardRevolutions' //delete
 import { setOrientation } from './realm/revolutions/appRevolutions'
@@ -15,10 +15,11 @@ export default class App extends Component<Props> {
     super()
     Realm.open({
 deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
-      schema: [ UserSchema, GameSchema ]
+      schema: [ UserSchema, AppSchema, RainbowCardSchema ]
     }).then(realm => {
       realm.write(() => {
-        !realm.objects('Game')[0] && realm.create('Game', {})
+        !realm.objects('App')[0] && realm.create('App', {})
+        !realm.objects('RainbowCard')[0] && realm.create('RainbowCard', {})
         // users = realm.objects('User')
         // for (let user of users) realm.delete(user)
       })
@@ -37,7 +38,7 @@ deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUC
 
   render() {
     const { realm } = this.state
-    const orientation = realm && realm.objects('Game')[0].orientation
+    const orientation = realm && realm.objects('App')[0].orientation
     return (
       <View style={{flex: 1, flexDirection: orientation == 'landscape' ? 'row' : 'column'}}>
         <View style={{
