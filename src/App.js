@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Dimensions, Platform, StyleSheet, Text, View } from 'react-native'
+import { Platform, StyleSheet, Text, View } from 'react-native'
 import { AppSchema, RainbowCardSchema, UserSchema } from './realm/Schema'
 import RainbowCard from './components/RainbowCard/RainbowCard'
 import { nextColor } from './realm/revolutions/rainbowCardRevolutions' //delete
-import { setOrientation } from './realm/revolutions/appRevolutions'
+import { institute, setOrientation } from './realm/revolutions/appRevolutions'
 const Realm = require('realm')
 
 type Props = {}
@@ -17,22 +17,12 @@ export default class App extends Component<Props> {
 deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
       schema: [ UserSchema, AppSchema, RainbowCardSchema ]
     }).then(realm => {
-      realm.write(() => {
-        !realm.objects('App')[0] && realm.create('App', {})
-        !realm.objects('RainbowCard')[0] && realm.create('RainbowCard', {})
-        // users = realm.objects('User')
-        // for (let user of users) realm.delete(user)
-      })
-      this.setState({ realm })
+      institute(realm)
       realm.addListener('change', () => {
         this.setState({ realm })
       })
-      setOrientation(realm)
+      this.setState({ realm })
       nextColor(realm) //delete
-    })
-    Dimensions.addEventListener('change', () => {
-      let realm = this.state.realm
-      setOrientation(realm)
     })
   }
 
@@ -42,7 +32,7 @@ deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUC
     return (
       <View style={{flex: 1, flexDirection: orientation == 'landscape' ? 'row' : 'column'}}>
         <View style={{
-            flex: 13,
+            flex: 12,
             flexDirection: orientation == 'landscape' ? 'row' : 'column',
             backgroundColor: 'powderblue'}}>
           {/* <Clouds /> */}
