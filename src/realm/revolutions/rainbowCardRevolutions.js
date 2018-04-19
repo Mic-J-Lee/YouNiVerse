@@ -19,7 +19,7 @@ export const nextColor = (realm) => {
     realm.objects('RainbowCard')[0].activeColor = colors[next]
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
   })
-  setTimeout(()=>{nextColor(realm)}, 1000) //delete
+  setTimeout(()=>{nextColor(realm)}, 8000) //delete
 }
 
 export const setActiveColor = (realm, color) => {

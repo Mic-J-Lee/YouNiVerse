@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
-import Rainbow from './Rainbow'
+// import Question from './Question'
+// import Choice from './Choice'
 
 export default class FlashCard extends Component {
 

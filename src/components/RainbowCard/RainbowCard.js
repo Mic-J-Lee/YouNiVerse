@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
-import Rainbow from './Rainbow'
-import Flashcard from './Flashcard'
+import Rainbow from './Rainbow/Rainbow'
+import Flashcard from './Flashcard/Flashcard'
 
 export default class RainbowCard extends Component {
 
