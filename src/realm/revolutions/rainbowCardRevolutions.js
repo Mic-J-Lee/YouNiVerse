@@ -1,17 +1,8 @@
 import { Alert } from 'react-native'
 
-export const getRainbow = (realm) => {
-  if (!realm) return
-  let rainbow = {}
-  for (color of colors) {
-    rainbow[color] = realm.objects('RainbowCard')[0][color]
-  }
-  return rainbow
-}
-
 export const nextColor = (realm) => {
   if (!realm) return
-  const rainbow = getRainbow(realm)
+  const rainbow = rainbowAbledness(realm)
   const current = colors.indexOf(realm.objects('RainbowCard')[0].activeColor)
   let next = 0
   if (current != 5) next = current + 1
@@ -42,13 +33,22 @@ export const setActiveColor = (realm, color) => {
 export const toggleStripe = (realm, color) => {
   if (!realm) return
   if (realm.objects('RainbowCard')[0].activeColor == color) return
-  let rainbow = getRainbow(realm)
+  let rainbow = rainbowAbledness(realm)
   rainbow[color] = !rainbow[color]
   if (!Object.values(rainbow).includes(true)) 
     Alert.alert('You must have at least 1 active color!')
   else realm.write(()=>{
     realm.objects('RainbowCard')[0][color] = !realm.objects('RainbowCard')[0][color]
   })
+}
+
+const rainbowAbledness = (realm) => {
+  if (!realm) return
+  let rainbowAbledness = {}
+  for (color of colors) {
+    rainbowAbledness[color] = realm.objects('RainbowCard')[0][color]
+  }
+  return rainbowAbledness
 }
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
