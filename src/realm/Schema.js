@@ -1,10 +1,10 @@
 export const CardSchema = {
   name: 'Card',
   properties: {
-    name: 'string',
-    audio: 'string',
-    image: 'string',
-    writing: 'string'
+    name:     'string',
+    audio:    'string',
+    image:    'string',
+    writing:  'string'
   }
 }
 
