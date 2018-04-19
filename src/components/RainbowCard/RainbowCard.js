@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import Rainbow from './Rainbow'
 
 export default class RainbowCard extends Component {
@@ -17,7 +17,12 @@ export default class RainbowCard extends Component {
           </View>
           <View style={{flex: 1}} />
         </View>
-        <View style={{flex: 16, backgroundColor: 'black'}}>
+        <View style={{flex: 16, flexDirection: isPortrait ? 'column' : 'row'}}>
+          <View style={{flex: 4}} >
+          </View>
+          <View style={{flex: 5}} >
+            <Text>{realm && realm.objects('RainbowCard')[0].correctCard.audio}</Text>
+          </View>
         </View>
       </View>
     )

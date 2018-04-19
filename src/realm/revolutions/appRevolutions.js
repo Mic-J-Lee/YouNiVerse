@@ -1,4 +1,5 @@
 import { Dimensions } from 'react-native'
+import { AppSchema, CardSchema, RainbowCardSchema, UserSchema } from '../Schema'
 
 export const institute = (realm) => {
   if (!realm) return
@@ -7,10 +8,35 @@ export const institute = (realm) => {
     !realm.objects('RainbowCard')[0] && realm.create('RainbowCard', {})
     // users = realm.objects('User')
     // for (let user of users) realm.delete(user)
+
   })
   setOrientation(realm)
   Dimensions.addEventListener('change', () => {
     setOrientation(realm)
+  })
+  seedCards(realm)
+}
+
+export const open = (Realm) => {
+    return Realm.open({
+deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
+      schema: [ CardSchema, UserSchema, AppSchema, RainbowCardSchema ]
+    })
+}
+
+export const seedCards = (realm) => {
+  if (!realm) return
+  realm.write(()=>{
+    if (!realm.objects('Card')[0]) {
+      realm.create('Card', {name: '一', audio: 'jat1', image: 'one', writing: 'onechinese'})
+      realm.create('Card', {name: '二', audio: 'ji6', image: 'two', writing: 'twochinese'})
+      realm.create('Card', {name: '三', audio: 'saam1', image: 'three', writing: 'threechinese'})
+      realm.create('Card', {name: '四', audio: 'sei3', image: 'four', writing: 'fourchinese'})
+      realm.create('Card', {name: '五', audio: 'ng5', image: 'five', writing: 'fivechinese'})
+      realm.create('Card', {name: '六', audio: 'luk6', image: 'six', writing: 'sixchinese'})
+    }
+  realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
+  realm.objects('RainbowCard')[0].cards = realm.objects('Card')
   })
 }
 

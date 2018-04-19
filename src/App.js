@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { Platform, StyleSheet, Text, View } from 'react-native'
-import { AppSchema, RainbowCardSchema, UserSchema } from './realm/Schema'
+import { Platform, Text, View } from 'react-native'
 import RainbowCard from './components/RainbowCard/RainbowCard'
 import { nextColor } from './realm/revolutions/rainbowCardRevolutions' //delete
-import { institute, setOrientation } from './realm/revolutions/appRevolutions'
+import { institute, open, setOrientation } from './realm/revolutions/appRevolutions'
 const Realm = require('realm')
 
 type Props = {}
@@ -13,10 +12,7 @@ export default class App extends Component<Props> {
   
   constructor() {
     super()
-    Realm.open({
-deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
-      schema: [ UserSchema, AppSchema, RainbowCardSchema ]
-    }).then(realm => {
+    open(Realm).then(realm => {
       institute(realm)
       realm.addListener('change', () => {
         this.setState({ realm })

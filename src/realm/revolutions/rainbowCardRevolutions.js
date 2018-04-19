@@ -26,6 +26,7 @@ export const nextColor = (realm) => {
   }
   realm.write(() => {
     realm.objects('RainbowCard')[0].activeColor = colors[next]
+    realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
   })
   setTimeout(()=>{nextColor(realm)}, 1000) //delete
 }
@@ -46,7 +47,6 @@ export const toggleStripe = (realm, color) => {
   if (!Object.values(rainbow).includes(true)) 
     Alert.alert('You must have at least 1 active color!')
   else realm.write(()=>{
-    console.log('toggled!')
     realm.objects('RainbowCard')[0][color] = !realm.objects('RainbowCard')[0][color]
   })
 }
