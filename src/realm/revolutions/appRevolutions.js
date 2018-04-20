@@ -18,10 +18,10 @@ export const institute = (realm) => {
 }
 
 export const open = (Realm) => {
-    return Realm.open({
-deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
-      schema: [ CardSchema, UserSchema, AppSchema, RainbowCardSchema ]
-    })
+  return Realm.open({
+                          deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
+    schema: [ CardSchema, UserSchema, AppSchema, RainbowCardSchema ]
+  })
 }
 
 export const seedCards = (realm) => {
