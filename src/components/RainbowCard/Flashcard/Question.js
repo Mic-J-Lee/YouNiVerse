@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import PictureButton from './PictureButton'
+import AudioButton from './AudioButton'
 
 export default class Question extends Component {
 
@@ -10,20 +11,30 @@ export default class Question extends Component {
 
   render() {
     const { realm } = this.props
-    const style = (realm) => {
+
+    const question = () => {
       if (!realm) return
       const RainbowCard = realm.objects('RainbowCard')[0]
-      // if RainbowCard.
-    }
-    const question = () => {
-      return (
-        <PictureButton
-          disabled={true}
-          onPress={this.onPress}
-          picture={realm && realm.objects('RainbowCard')[0].correctCard.image}
-          style='question'
-        />
-      )
+      const activeColor = RainbowCard.activeColor
+      if (RainbowCard[activeColor + 'Mode'].split(' -> ')[0] != 'audio') {
+        return (
+          <PictureButton
+            disabled={true}
+            onPress={this.onPress}
+            picture={realm && realm.objects('RainbowCard')[0].correctCard.image}
+            style='question'
+          />
+        )
+      } else {
+        return (
+          <AudioButton
+            disabled={realm.objects('App')[0].status != 'ready'}
+            onPress={this.onPress}
+            sound={realm && realm.objects('RainbowCard')[0].correctCard.audio}
+            style='question'
+          />
+        )
+      }
     }
     return (
       <View style={{
