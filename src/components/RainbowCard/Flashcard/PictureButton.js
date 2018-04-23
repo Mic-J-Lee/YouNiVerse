@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
+import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import Images from '../../../assets/dynamicRequire'
 
 export default class PictureButton extends Component {
@@ -29,8 +30,8 @@ export default class PictureButton extends Component {
 
 const styles = StyleSheet.create({
   question: {
-    width: 200,
-    height: 200,
+    width: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
+    height: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
     borderRadius: 25,
   },
   choice: {
