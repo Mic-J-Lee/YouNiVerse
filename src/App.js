@@ -18,7 +18,7 @@ export default class App extends Component<Props> {
         this.setState({ realm })
       })
       this.setState({ realm })
-      nextColor(realm) //delete
+      // nextColor(realm) //delete
     })
   }
 

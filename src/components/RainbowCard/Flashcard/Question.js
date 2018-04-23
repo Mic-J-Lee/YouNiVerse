@@ -15,13 +15,23 @@ export default class Question extends Component {
       const RainbowCard = realm.objects('RainbowCard')[0]
       // if RainbowCard.
     }
+    const question = () => {
+      return (
+        <PictureButton
+          disabled={true}
+          onPress={this.onPress}
+          picture={realm && realm.objects('RainbowCard')[0].correctCard.image}
+          style='question'
+        />
+      )
+    }
     return (
-      <PictureButton
-        disabled={true}
-        onPress={this.onPress}
-        picture={realm && realm.objects('RainbowCard')[0].correctCard.image}
-        style='question'
-      />
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'}} >
+        {question()}
+      </View>
     )
   }
 }

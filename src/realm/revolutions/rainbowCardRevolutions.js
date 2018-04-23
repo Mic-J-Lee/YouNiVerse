@@ -27,6 +27,7 @@ export const setActiveColor = (realm, color) => {
   if (!realm.objects('RainbowCard')[0][color]) return
   realm.write(() => {
     realm.objects('RainbowCard')[0].activeColor = color
+    realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
   })
 }
 
