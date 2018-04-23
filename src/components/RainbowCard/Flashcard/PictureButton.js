@@ -1,22 +1,53 @@
 import React, { Component } from 'react'
-import { Image, TouchableOpacity, View } from 'react-native'
+import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import Images from '../../../assets/dynamicRequire'
 
 export default class PictureButton extends Component {
 
   render() {
-    const p = this.props
-    const disabled = p.disabled
+    const { disabled, onPress, picture, style, wrong } = this.props
     return (
-      <TouchableOpacity style={styles[p.size + 'RoundedSquare']}
-                        onPress={p._checkIfCorrect}
-                        disabled={disabled || p.status != 'ready' || p.size == 'large'} >
-        <View style={{justifyContent: 'center', alignItems: 'center'}} >
-          <Image source={Images[p.picture]}
-                 style={[styles[p.size + 'RoundedSquare'], {opacity: disabled ? .5 : 1}]} />
-          {disabled && <Image source={require('../../../assets/pictures/red_x.png')} style={styles.redX} />}
+      <TouchableOpacity
+        style={styles[style]}
+        onPress={onPress}
+        disabled={disabled == true} >
+        <View style={{
+          justifyContent: 'center',
+          alignItems: 'center'}} >
+          <Image
+            source={Images[picture]}
+            style={[styles[style]]} />
+          {wrong && <Image
+            source={require('../../../assets/images/red_x.png')}
+            style={styles.redX} />
+          }
         </View>
       </TouchableOpacity>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  question: {
+    width: 200,
+    height: 200,
+    borderRadius: 25,
+  },
+  choice: {
+    width: 110,
+    height: 110,
+    borderRadius: 25,
+  },
+  wrongChoice: {
+    width: 110,
+    height: 110,
+    borderRadius: 25,
+    opacity: .75,
+  },
+  redX: {
+    width: 120,
+    height: 120,
+    position: 'absolute',
+    opacity: .75,
+  }
+})
