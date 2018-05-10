@@ -14,10 +14,10 @@ export default class Question extends Component {
   loadSound(language = 'cantonese') {
     const { realm } = this.props
     if (!realm) return
-    const sound = realm && realm.objects('RainbowCard')[0].correctCard.audio
-    const fileName = language + '_' + sound + '.mp3'
-    if (this.whoosh) this.whoosh.release()
-    this.whoosh = new Sound(
+    const audio = realm && realm.objects('RainbowCard')[0].correctCard.audio
+    const fileName = language + '_' + audio + '.mp3'
+    if (this.sound) this.sound.release()
+    this.sound = new Sound(
       fileName,
       Sound.MAIN_BUNDLE,
       (error) => {
@@ -25,7 +25,7 @@ export default class Question extends Component {
           console.log('failed to load ' + fileName, error)
           return
         }
-        console.log('loaded ' + fileName + ', seconds: ' + this.whoosh.getDuration() + ', channels:' + this.whoosh.getNumberOfChannels())
+        console.log('loaded ' + fileName + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
       }
     )
     // setTimeout(()=>{this.playSound()}, 1000)  //this is interesting cause it loops in iOS but not Android, why?
@@ -34,23 +34,23 @@ export default class Question extends Component {
   playSound = () => {
     const { realm } = this.props
     if (!realm) return
-    const sound = realm.objects('RainbowCard')[0].correctCard.audio
-    if (this.whoosh) {
-      if (Platform.OS == 'android' && this.whoosh._filename.split('_')[this.whoosh._filename.split('_').length - 1] != sound) {
-        console.log(this.whoosh._filename.split('_')[this.whoosh._filename.split('_').length - 1] + ' != ' + sound)
-        Alert.alert('Something is wrong with the sound file.')
-      } else if (Platform.OS == 'ios' && this.whoosh._filename.split('_')[this.whoosh._filename.split('_').length - 1 - '.mp3'] != sound) {
-        console.log(this.whoosh._filename.split('_')[this.whoosh._filename.split('_').length - 1] + ' != ' + sound)
-        Alert.alert('Something is wrong with the sound file.')
+    const audio = realm.objects('RainbowCard')[0].correctCard.audio
+    if (this.sound) {
+      if (Platform.OS == 'android' && this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] != audio) {
+        console.log(this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] + ' != ' + audio)
+        Alert.alert('Something is wrong with the audio file.')
+      } else if (Platform.OS == 'ios' && this.sound._filename.split('_')[this.sound._filename.split('_').length - 1 - '.mp3'] != audio) {
+        console.log(this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] + ' != ' + audio)
+        Alert.alert('Something is wrong with the audio file.')
       } else {
-        this.setState({playing: this.whoosh.getDuration()})
+        this.setState({playing: this.sound.getDuration()})
       }
-      this.whoosh.play((success) => {
+      this.sound.play((success) => {
         if (success) {
           this.setState({playing: false})
         } else {
-          this.whoosh.reset()
-          console.log('couldnt play ' + this.whoosh._filename)
+          this.sound.reset()
+          console.log('couldnt play ' + this.sound._filename)
         }
       })
     } else {
@@ -77,8 +77,8 @@ export default class Question extends Component {
           />
         )
       } else {
-        const sound = realm.objects('RainbowCard')[0].correctCard.audio
-        if (!this.whoosh || this.whoosh._filename.split('_')[this.whoosh._filename.split('_').length - 1] != sound) this.loadSound()
+        const audio = realm.objects('RainbowCard')[0].correctCard.audio
+        if (!this.sound || this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] != audio) this.loadSound()
         return (
           <View style={{backgroundColor: this.state.playing ? 'black' : null}}>
             <MediaButton
