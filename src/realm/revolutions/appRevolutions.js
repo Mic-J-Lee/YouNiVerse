@@ -1,7 +1,7 @@
 import { Dimensions } from 'react-native'
 import { AppSchema, CardSchema, RainbowCardSchema, UserSchema } from '../Schema'
 
-export const institute = (realm) => {
+export const establish = (realm) => {
   if (!realm) return
   realm.write(() => {
     !realm.objects('App')[0] && realm.create('App', {})
@@ -17,7 +17,7 @@ export const institute = (realm) => {
   seedCards(realm)
 }
 
-export const open = (Realm) => {
+export const loadSchema = (Realm) => {
   return Realm.open({
                           deleteRealmIfMigrationNeeded: true, /////////////MUST REMOVE THIS LINE IN PRODUCTION!!!!!!!!!
     schema: [ CardSchema, UserSchema, AppSchema, RainbowCardSchema ]

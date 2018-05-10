@@ -3,21 +3,21 @@ import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import Images from '../../../assets/dynamicRequire'
 
-export default class AudioButton extends Component {
+export default class MediaButton extends Component {
 
   render() {
-    const { disabled, onPress, sound, style, wrong } = this.props
+    const { disabled, onPress, picture, styling, wrong } = this.props
     return (
       <TouchableOpacity
-        style={styles[style]}
+        style={styles[styling]}
         onPress={onPress}
         disabled={disabled == true} >
         <View style={{
           justifyContent: 'center',
           alignItems: 'center'}} >
           <Image
-            source={require('../../../assets/images/800px-circle-Flag_of_Hong_Kong.png')}
-            style={[styles[style]]} />
+            source={Images[picture]}
+            style={[styles[styling]]} />
           {wrong && <Image
             source={require('../../../assets/images/red_x.png')}
             style={styles.redX} />
@@ -29,15 +29,15 @@ export default class AudioButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  question: {
+  bigSquare: {
+    width: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
+    height: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
+    borderRadius: 25,
+  },
+  bigCircle: {
     width: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
     height: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
     borderRadius: 100,
-  },
-  choice: {
-    width: 110,
-    height: 110,
-    borderRadius: 25,
   },
   wrongChoice: {
     width: 110,

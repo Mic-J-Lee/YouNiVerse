@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Platform, Text, View } from 'react-native'
 import RainbowCard from './components/RainbowCard/RainbowCard'
 import { nextColor } from './realm/revolutions/rainbowCardRevolutions' //delete
-import { institute, open, setOrientation } from './realm/revolutions/appRevolutions'
+import { establish, loadSchema, setOrientation } from './realm/revolutions/appRevolutions'
 const Realm = require('realm')
 
 type Props = {}
@@ -12,8 +12,8 @@ export default class App extends Component<Props> {
   
   constructor() {
     super()
-    open(Realm).then(realm => {
-      institute(realm)
+    loadSchema(Realm).then(realm => {
+      establish(realm)
       realm.addListener('change', () => {
         this.setState({ realm })
       })
