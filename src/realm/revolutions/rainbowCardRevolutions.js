@@ -19,7 +19,7 @@ export const nextColor = (realm) => {
     realm.objects('RainbowCard')[0].activeColor = colors[next]
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
   })
-  setTimeout(()=>{nextColor(realm)}, 8000) //delete
+  setTimeout(()=>nextColor(realm), 8000) //delete
 }
 
 export const setActiveColor = (realm, color) => {
@@ -45,11 +45,11 @@ export const toggleStripe = (realm, color) => {
 
 const rainbowAbledness = (realm) => {
   if (!realm) return
-  let rainbowAbledness = {}
+  let output = {}
   for (color of colors) {
-    rainbowAbledness[color] = realm.objects('RainbowCard')[0][color]
+    output[color] = realm.objects('RainbowCard')[0][color]
   }
-  return rainbowAbledness
+  return output
 }
 
 const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']

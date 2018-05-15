@@ -11,9 +11,7 @@ export const establish = (realm) => {
 
   })
   setOrientation(realm)
-  Dimensions.addEventListener('change', () => {
-    setOrientation(realm)
-  })
+  Dimensions.addEventListener('change', ()=>setOrientation(realm))
   seedCards(realm)
 }
 

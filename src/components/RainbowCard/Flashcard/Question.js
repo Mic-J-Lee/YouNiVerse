@@ -11,6 +11,21 @@ export default class Question extends Component {
     super()
   }
 
+  isSoundCorrect = (realm) => {
+    //this used to be in playSound, but should use in loadSound, to return if sound doesn't need loading
+    if (!realm) return
+    // const audio = realm.objects('RainbowCard')[0].correctCard.audio
+    // if (Platform.OS == 'android' && this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] != audio) {
+    //   console.log(this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] + ' != ' + audio)
+    //   Alert.alert('Something is wrong with the audio file.')
+    // } else if (Platform.OS == 'ios' && (this.sound._filename.split('_')[this.sound._filename.split('_').length - 1]).split('.')[0] != audio) {
+    //   console.log(this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] + ' != ' + audio)
+    //   Alert.alert('Something is wrong with the audio file.')
+    // } else {
+    //   this.setState({playing: this.sound.getDuration()})
+    // }
+  }
+
   loadSound(language = 'cantonese') {
     const { realm } = this.props
     if (!realm) return
@@ -28,23 +43,13 @@ export default class Question extends Component {
         console.log('loaded ' + fileName + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
       }
     )
-    // setTimeout(()=>{this.playSound()}, 1000)  //this is interesting cause it loops in iOS but not Android, why?
+    // setTimeout(()=>this.playSound(), 1000)  //this is interesting cause it loops in iOS but not Android, why?
   }
 
   playSound = () => {
     const { realm } = this.props
     if (!realm) return
-    const audio = realm.objects('RainbowCard')[0].correctCard.audio
     if (this.sound) {
-      if (Platform.OS == 'android' && this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] != audio) {
-        console.log(this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] + ' != ' + audio)
-        Alert.alert('Something is wrong with the audio file.')
-      } else if (Platform.OS == 'ios' && this.sound._filename.split('_')[this.sound._filename.split('_').length - 1 - '.mp3'] != audio) {
-        console.log(this.sound._filename.split('_')[this.sound._filename.split('_').length - 1] + ' != ' + audio)
-        Alert.alert('Something is wrong with the audio file.')
-      } else {
-        this.setState({playing: this.sound.getDuration()})
-      }
       this.sound.play((success) => {
         if (success) {
           this.setState({playing: false})
