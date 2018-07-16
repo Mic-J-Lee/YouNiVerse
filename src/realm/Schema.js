@@ -4,7 +4,8 @@ export const CardSchema = {
     name:     'string',
     audio:    'string',
     image:    'string',
-    writing:  'string'
+    writing:  'string',
+    category: 'string'
   }
 }
 
