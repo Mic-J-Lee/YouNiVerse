@@ -6,10 +6,10 @@ import Images from '../../../assets/dynamicRequire'
 export default class MediaButton extends Component {
 
   render() {
-    const { disabled, onPress, picture, styling, wrong } = this.props
+    const { disabled, onPress, picture, style, wrong } = this.props
     return (
       <TouchableOpacity
-        style={styles[styling]}
+        style={styles[style]}
         onPress={onPress}
         disabled={disabled == true} >
         <View style={{
@@ -17,7 +17,7 @@ export default class MediaButton extends Component {
           alignItems: 'center'}} >
           <Image
             source={Images[picture]}
-            style={[styles[styling]]} />
+            style={[styles[style]]} />
           {wrong && <Image
             source={require('../../../assets/images/red_x.png')}
             style={styles.redX} />

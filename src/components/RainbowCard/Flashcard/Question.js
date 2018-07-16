@@ -63,10 +63,6 @@ export default class Question extends Component {
     }
   }
 
-  myOnPress = () => {
-    this.playSound()
-  }
-
   render() {
     const { realm } = this.props
     const question = () => {
@@ -78,7 +74,7 @@ export default class Question extends Component {
           <MediaButton
             disabled={true}
             picture={realm && realm.objects('RainbowCard')[0].correctCard[RainbowCard[activeColor + 'Mode'].split(' -> ')[0]]}
-            styling='bigSquare'
+            style='bigSquare'
           />
         )
       } else {
@@ -88,9 +84,9 @@ export default class Question extends Component {
           <View style={{backgroundColor: this.state.playing ? 'black' : null}}>
             <MediaButton
               disabled={realm.objects('App')[0].status != 'ready'}
-              onPress={this.myOnPress}
+              onPress={this.playSound}
               picture={'hong_kong_flag'}
-              styling='bigCircle'
+              style='bigCircle'
             />
           </View>
         )
