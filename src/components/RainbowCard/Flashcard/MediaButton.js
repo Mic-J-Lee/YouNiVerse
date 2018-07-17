@@ -2,15 +2,55 @@ import React, { Component } from 'react'
 import { Image, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions'
 import Images from '../../../assets/dynamicRequire'
+import Sound from 'react-native-sound'
 
 export default class MediaButton extends Component {
 
+  loadSound() {
+    const { audioFilename } = this.props
+    if (this.sound) this.sound.release()
+    this.sound = new Sound(
+      audioFilename,
+      Sound.MAIN_BUNDLE,
+      (error) => {
+        if (error) {
+          console.log('failed to load ' + audioFilename, error)
+          return
+        }
+        console.log('loaded ' + audioFilename + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
+      }
+    )
+    // setTimeout(()=>this.playSound(), 1000)  //this is interesting cause it loops in iOS but not Android, why?
+  }
+
+  playSound = () => {
+    if (this.sound) {
+      this.sound.play((success) => {
+        // setPlaying(true)
+        if (success) {
+          // setPlaying(false)
+        } else {
+          this.sound.reset()
+          console.log('couldnt play ' + this.sound._filename)
+        }
+      })
+    } else {
+      console.log('Sound object not found')
+    }
+  }
+
+  onPress = () => {
+    if (this.props.audioFilename) this.playSound()
+    this.props.onPress
+  }
+
   render() {
-    const { disabled, onPress, picture, style, wrong } = this.props
+    const { audioFilename, disabled, picture, style, wrong } = this.props
+    if (audioFilename && (!this.sound || this.sound._filename != audioFilename)) this.loadSound()
     return (
       <TouchableOpacity
         style={styles[style]}
-        onPress={onPress}
+        onPress={this.onPress}
         disabled={disabled == true} >
         <View style={{
           justifyContent: 'center',

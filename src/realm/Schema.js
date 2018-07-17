@@ -46,6 +46,7 @@ export const RainbowCardSchema = {
 export const AppSchema = {
   name: 'App',
   properties: {
+    language:     {type: 'string', default: 'cantonese'},
     orientation:  {type: 'string', default: 'portrait'},
     screenHeight: {type: 'int',    default: 1},
     screenWidth:  {type: 'int',    default: 0},
