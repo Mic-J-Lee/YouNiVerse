@@ -20,7 +20,7 @@ export default class Question extends Component {
         )
       } else {
         return (
-          <View style={{backgroundColor: this.state.playing ? 'black' : null}}>
+          <View>
             <MediaButton
               audioFilename={realm.objects('App')[0].language + '_' + realm.objects('RainbowCard')[0].correctCard.audio + '.mp3'}
               disabled={realm.objects('App')[0].status != 'ready'}
