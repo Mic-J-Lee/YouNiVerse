@@ -24,7 +24,7 @@ export default class Choice extends Component {
             <MediaButton
               audioFilename={audioFilename}
               disabled={realm.objects('App')[0].status != 'ready'}
-              image={'hong_kong_flag'}
+              image='hong_kong_flag'
               style='smallCircle'
             />
           </View>
