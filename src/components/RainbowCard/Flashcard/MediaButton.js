@@ -41,11 +41,11 @@ export default class MediaButton extends Component {
 
   onPress = () => {
     if (this.props.audioFilename) this.playSound()
-    this.props.onPress
+    this.props.onPress && this.props.onPress()
   }
 
   render() {
-    const { audioFilename, disabled, picture, style, wrong } = this.props
+    const { audioFilename, disabled, image, style, wrong } = this.props
     if (audioFilename && (!this.sound || this.sound._filename != audioFilename)) this.loadSound()
     return (
       <TouchableOpacity
@@ -56,7 +56,7 @@ export default class MediaButton extends Component {
           justifyContent: 'center',
           alignItems: 'center'}} >
           <Image
-            source={Images[picture]}
+            source={Images[image]}
             style={[styles[style]]} />
           {wrong && <Image
             source={require('../../../assets/images/red_x.png')}
@@ -77,6 +77,16 @@ const styles = StyleSheet.create({
   bigCircle: {
     width: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
     height: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(30) : responsiveHeight(30),
+    borderRadius: 100,
+  },
+  smallSquare: {
+    width: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(20) : responsiveHeight(20),
+    height: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(20) : responsiveHeight(20),
+    borderRadius: 25,
+  },
+  smallCircle: {
+    width: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(20) : responsiveHeight(20),
+    height: responsiveWidth(50) > responsiveHeight(50) ? responsiveWidth(20) : responsiveHeight(20),
     borderRadius: 100,
   },
   wrongChoice: {

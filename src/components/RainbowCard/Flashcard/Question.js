@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Alert, Platform, View } from 'react-native'
+import { Alert, View } from 'react-native'
 import MediaButton from './MediaButton'
 
 export default class Question extends Component {
@@ -14,7 +14,7 @@ export default class Question extends Component {
         return (
           <MediaButton
             disabled={true}
-            picture={realm && realm.objects('RainbowCard')[0].correctCard[RainbowCard[activeColor + 'Mode'].split(' -> ')[0]]}
+            image={realm && realm.objects('RainbowCard')[0].correctCard[RainbowCard[activeColor + 'Mode'].split(' -> ')[0]]}
             style='bigSquare'
           />
         )
@@ -24,7 +24,7 @@ export default class Question extends Component {
             <MediaButton
               audioFilename={realm.objects('App')[0].language + '_' + realm.objects('RainbowCard')[0].correctCard.audio + '.mp3'}
               disabled={realm.objects('App')[0].status != 'ready'}
-              picture={'hong_kong_flag'}
+              image={'hong_kong_flag'}
               style='bigCircle'
             />
           </View>
