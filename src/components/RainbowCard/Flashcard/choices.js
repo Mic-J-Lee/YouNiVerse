@@ -1,6 +1,6 @@
 import React from 'react'
-import Choice from './Choice'
 import { StyleSheet, View } from 'react-native'
+import Choice from './Choice'
 
 
 export const choices = (realm) => {
@@ -8,12 +8,14 @@ export const choices = (realm) => {
   const isPortrait = realm.objects('App')[0].orientation == 'portrait'
   let choicesArray = []
   const cards = realm.objects('RainbowCard')[0].cards
+  const RainbowCard = realm.objects('RainbowCard')[0]
+  const activeColor = RainbowCard.activeColor
   for (let i = 0; i < cards.length; i++) {
     let audioFilename = realm.objects('App')[0].language + '_' + cards[i].audio + '.mp3'
     choicesArray.push(
       <Choice
         audioFilename={audioFilename}
-        image={cards[i].image}
+        image={cards[i][RainbowCard[activeColor + 'Mode'].split(' -> ')[1]]}
         key={cards[i].name + cards[i].audio}
         realm={realm}
       />
@@ -53,8 +55,8 @@ export const choices = (realm) => {
 
 const styles = StyleSheet.create({
   choiceFlexBox: {
-    flex:1, 
-    alignItems: 'center', 
+    flex:1,
+    alignItems: 'center',
     justifyContent: 'center'
   }
 })
