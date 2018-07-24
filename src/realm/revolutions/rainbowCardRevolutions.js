@@ -9,6 +9,7 @@ export const drawSixCards = (realm) => {
   realm.write(() => {
     realm.objects('RainbowCard')[0].cards = cards
     realm.objects('RainbowCard')[0].wrongGuesses = []
+    realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
   })
 }
 
@@ -38,21 +39,19 @@ export const nextColor = (realm) => {
     else
       next++
   }
-  drawSixCards(realm)
   realm.write(() => {
     realm.objects('RainbowCard')[0].activeColor = colors[next]
-    realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
   })
+  drawSixCards(realm)
 }
 
 export const setActiveColor = (realm, color) => {
   if (!realm) return
   if (!realm.objects('RainbowCard')[0][color]) return
-  drawSixCards(realm)
   realm.write(() => {
     realm.objects('RainbowCard')[0].activeColor = color
-    realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
   })
+  drawSixCards(realm)
 }
 
 export const toggleStripe = (realm, color) => {
