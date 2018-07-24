@@ -19,7 +19,6 @@ export default class MediaButton extends Component {
         console.log('loaded ' + audioFilename + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
       }
     )
-    // setTimeout(()=>this.playSound(), 1000)  //this is interesting cause it loops in iOS but not Android, why?
   }
 
   playSound = () => {
@@ -47,7 +46,7 @@ export default class MediaButton extends Component {
     const dimensions = Dimensions.get('screen')
     const shortSide = dimensions.height > dimensions.width ? dimensions.width : dimensions.height
     const longSide = dimensions.height == shortSide ? dimensions.width : dimensions.height
-    wideAspect = longSide/shortSide > 1.7 ? true : false
+    const wideAspect = longSide/shortSide > 1.7 ? true : false
     const styles = StyleSheet.create({
       bigSquare: {
         width: wideAspect ? shortSide/2 : shortSide/2.5,
