@@ -17,13 +17,10 @@ export const choices = (realm) => {
         audioFilename={audioFilename}
         image={cards[i][RainbowCard[activeColor + 'Mode'].split(' -> ')[1]]}
         key={cards[i].name + cards[i].audio}
+        name={cards[i].name}
         realm={realm}
       />
     )
-  }
-  for (let i = choicesArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [choicesArray[i], choicesArray[j]] = [choicesArray[j], choicesArray[i]];
   }
   return (
     <View style={{flex: 5, flexDirection: isPortrait ? 'column' : 'row'}}>

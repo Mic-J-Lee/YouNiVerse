@@ -1,5 +1,28 @@
 import { Alert } from 'react-native'
 
+export const drawSixCards = (realm) => {
+  cards = [...realm.objects('Card')]
+  for (let i = cards.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  realm.write(() => {
+    realm.objects('RainbowCard')[0].cards = cards
+    realm.objects('RainbowCard')[0].wrongGuesses = []
+  })
+}
+
+export const guess = (name, realm) => {
+  if (name == realm.objects('RainbowCard')[0].correctCard.name) {
+    nextColor(realm)
+  }
+  else {
+    realm.write(() => {
+      console.log(realm.objects('RainbowCard')[0].wrongGuesses.push(name))
+    })
+  }
+}
+
 export const nextColor = (realm) => {
   if (!realm) return
   const rainbow = rainbowAbledness(realm)
@@ -15,16 +38,17 @@ export const nextColor = (realm) => {
     else
       next++
   }
+  drawSixCards(realm)
   realm.write(() => {
     realm.objects('RainbowCard')[0].activeColor = colors[next]
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
   })
-  setTimeout(()=>nextColor(realm), 8000) //delete
 }
 
 export const setActiveColor = (realm, color) => {
   if (!realm) return
   if (!realm.objects('RainbowCard')[0][color]) return
+  drawSixCards(realm)
   realm.write(() => {
     realm.objects('RainbowCard')[0].activeColor = color
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
