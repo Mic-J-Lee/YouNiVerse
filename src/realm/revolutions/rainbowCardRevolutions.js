@@ -3,14 +3,21 @@ import { Alert } from 'react-native'
 export const drawSixCards = (realm) => {
   cards = [...realm.objects('Card')]
   for (let i = cards.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [cards[i], cards[j]] = [cards[j], cards[i]];
+    const j = Math.floor(Math.random() * (i + 1)); //why does shuffle break without this semicolon?!?
+    [cards[i], cards[j]] = [cards[j], cards[i]]
   }
   realm.write(() => {
     realm.objects('RainbowCard')[0].cards = cards
     realm.objects('RainbowCard')[0].wrongGuesses = []
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
   })
+  if (realm.objects('RainbowCard')[0][realm.objects('RainbowCard')[0].activeColor + 'Mode'].split(' -> ')[1] == 'audio') {
+    realm.write(()=>{
+      for (let i = cards.length - 1; i >= 0; i--) {
+        realm.objects('RainbowCard')[0].playList.push(cards[i].name)
+      }
+    })
+  }
 }
 
 export const guess = (name, realm) => {

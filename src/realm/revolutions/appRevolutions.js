@@ -32,10 +32,11 @@ export const seedCards = (realm) => {
       realm.create('Card', {name: '四', audio: 'sei3', image: 'fourimage', writing: 'fourchinese', category: 'elementary numbers'})
       realm.create('Card', {name: '五', audio: 'ng5', image: 'fiveimage', writing: 'fivechinese', category: 'elementary numbers'})
       realm.create('Card', {name: '六', audio: 'luk6', image: 'siximage', writing: 'sixchinese', category: 'elementary numbers'})
+      //set initial state
+      realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
+      realm.objects('RainbowCard')[0].wrongGuesses = []
+      realm.objects('RainbowCard')[0].cards = realm.objects('Card')
     }
-  realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
-  realm.objects('RainbowCard')[0].wrongGuesses = []
-  realm.objects('RainbowCard')[0].cards = realm.objects('Card')
   })
 }
 

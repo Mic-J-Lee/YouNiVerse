@@ -28,6 +28,7 @@ export const RainbowCardSchema = {
     activeColor:  {type: 'string', default: 'red'},
     cards:        'Card[]',
     correctCard:  'Card',
+    playList:     {type: 'string[]'},
     wrongGuesses: {type: 'string[]'},
     red:          {type: 'bool',   default: true},
     orange:       {type: 'bool',   default: true},
