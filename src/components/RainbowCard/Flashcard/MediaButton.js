@@ -69,8 +69,8 @@ export default class MediaButton extends Component {
         borderRadius: 100
       },
       redX: {
-        width: 120,
-        height: 120,
+        width: wideAspect ? shortSide/3.2 : shortSide/3.8,
+        height: wideAspect ? shortSide/3.2 : shortSide/3.8,
         position: 'absolute',
         opacity: .75
       }

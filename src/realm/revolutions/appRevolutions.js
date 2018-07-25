@@ -34,6 +34,7 @@ export const seedCards = (realm) => {
       realm.create('Card', {name: '六', audio: 'luk6', image: 'siximage', writing: 'sixchinese', category: 'elementary numbers'})
     }
   realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)]
+  realm.objects('RainbowCard')[0].wrongGuesses = []
   realm.objects('RainbowCard')[0].cards = realm.objects('Card')
   })
 }
