@@ -34,6 +34,7 @@ export default class Choice extends Component {
         } else {
           this.sound.reset()
           console.log('couldnt play ' + this.sound._filename)
+          setTimeout(()=>{this.playSound()}, 100)
         }
       })
     } else {
@@ -56,7 +57,7 @@ export default class Choice extends Component {
       const playList = RainbowCard.playList
       const wrong = (RainbowCard.wrongGuesses.indexOf(name) != -1)
       if (playList.length > 0 && playList[0] == name) {
-        setTimeout(()=>{this.playSound()},100)
+        setTimeout(()=>{this.playSound()}, 100)
       }
       if (RainbowCard[activeColor + 'Mode'].split(' -> ')[1] != 'audio') {
         return (

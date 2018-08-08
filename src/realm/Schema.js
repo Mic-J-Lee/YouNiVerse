@@ -49,6 +49,7 @@ export const AppSchema = {
   name: 'App',
   properties: {
     language:     {type: 'string', default: 'cantonese'},
+    menu:         {type: 'bool',   default: false},
     orientation:  {type: 'string', default: 'portrait'},
     screenHeight: {type: 'int',    default: 1},
     screenWidth:  {type: 'int',    default: 0},

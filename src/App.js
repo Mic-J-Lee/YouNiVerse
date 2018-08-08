@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { Platform, Text, View } from 'react-native'
+import Ivan from './components/Ivan/Ivan'
+import Menu from './components/Menu/Menu'
 import RainbowCard from './components/RainbowCard/RainbowCard'
-import { nextColor } from './realm/revolutions/rainbowCardRevolutions' //delete
 import { establish, loadSchema, setOrientation } from './realm/revolutions/appRevolutions'
 const Realm = require('realm')
 
-type Props = {}
+// type Props = {}
 export default class App extends Component<Props> {
 
   state = {realm: null}
@@ -18,7 +19,6 @@ export default class App extends Component<Props> {
         this.setState({ realm })
       })
       this.setState({ realm })
-      // nextColor(realm) //delete
     })
   }
 
@@ -33,10 +33,10 @@ export default class App extends Component<Props> {
             backgroundColor: 'powderblue'}}>
           {/* <Clouds /> */}
           <RainbowCard realm={realm} />
-          {/* {this.state.menu && menu} */}
-          {/* {ivan} */}
         </View>
         <View style={{flex: 1, backgroundColor: 'pink'}} />
+        { realm && realm.objects('App')[0].menu && <Menu realm={realm} /> }
+        <Ivan realm={realm} />
       </View>
     )
   }

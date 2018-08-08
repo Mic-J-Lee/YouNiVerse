@@ -50,3 +50,10 @@ export const setOrientation = (realm) => {
     realm.objects('App')[0].orientation = orientation
   })
 }
+
+export const toggleMenu = (realm) => {
+  if (!realm) return
+  realm.write(() => {
+    realm.objects('App')[0].menu = !realm.objects('App')[0].menu
+  })
+}

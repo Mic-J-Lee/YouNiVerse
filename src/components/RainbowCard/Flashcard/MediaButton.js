@@ -59,18 +59,18 @@ export default class MediaButton extends Component {
         borderRadius: 100
       },
       smallSquare: {
-        width: wideAspect ? shortSide/3.2 : shortSide/3.8,
-        height: wideAspect ? shortSide/3.2 : shortSide/3.8,
+        width: wideAspect ? shortSide/3.4 : shortSide/3.8,
+        height: wideAspect ? shortSide/3.4 : shortSide/3.8,
         borderRadius: 25
       },
       smallCircle: {
-        width: wideAspect ? shortSide/3.2 : shortSide/3.8,
-        height: wideAspect ? shortSide/3.2 : shortSide/3.8,
+        width: wideAspect ? shortSide/3.4 : shortSide/3.8,
+        height: wideAspect ? shortSide/3.4 : shortSide/3.8,
         borderRadius: 100
       },
       redX: {
-        width: wideAspect ? shortSide/3.2 : shortSide/3.8,
-        height: wideAspect ? shortSide/3.2 : shortSide/3.8,
+        width: wideAspect ? shortSide/3.4 : shortSide/3.8,
+        height: wideAspect ? shortSide/3.4 : shortSide/3.8,
         position: 'absolute',
         opacity: .75
       }

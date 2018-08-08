@@ -13,6 +13,7 @@ export const drawSixCards = (realm) => {
   })
   if (realm.objects('RainbowCard')[0][realm.objects('RainbowCard')[0].activeColor + 'Mode'].split(' -> ')[1] == 'audio') {
     realm.write(()=>{
+      realm.objects('RainbowCard')[0].playList = []
       for (let i = cards.length - 1; i >= 0; i--) {
         realm.objects('RainbowCard')[0].playList.push(cards[i].name)
       }
