@@ -16,10 +16,11 @@ export default class Menu extends Component {
           alignItems: 'center',
           backgroundColor: 'black',
           borderRadius: 18,
-          height: dimensions.height - 30,
+          height: dimensions.height * .95,
           opacity: .93,
-          width: dimensions.width - 10 }}>
-          <Text style={{color: 'white', fontSize: 30}} >Menu</Text>
+          padding: 10,
+          width: dimensions.width * .95 }}>
+          <Text style={{color: 'white', fontSize: 30, fontWeight: 'bold'}} >Menu</Text>
         </View>
       </View>
     )
