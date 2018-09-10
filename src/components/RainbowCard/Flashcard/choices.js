@@ -11,7 +11,7 @@ export const choices = (realm) => {
   const RainbowCard = realm.objects('RainbowCard')[0]
   const activeColor = RainbowCard.activeColor
   for (let i = 0; i < cards.length; i++) {
-    let audioFilename = realm.objects('App')[0].language + '_' + cards[i].audio + '.mp3'
+    let audioFilename = realm.objects('User')[0].language + '_' + cards[i].audio + '.mp3'
     choicesArray.push(
       <Choice
         audioFilename={audioFilename}

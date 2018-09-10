@@ -5,6 +5,7 @@ export const establish = (realm) => {
   if (!realm) return
   realm.write(() => {
     !realm.objects('App')[0] && realm.create('App', {})
+    !realm.objects('User')[0] && realm.create('User', {})
     !realm.objects('RainbowCard')[0] && realm.create('RainbowCard', {})
     // users = realm.objects('User')
     // for (let user of users) realm.delete(user)
@@ -48,6 +49,13 @@ export const setOrientation = (realm) => {
     realm.objects('App')[0].screenHeight = dimensions.height
     realm.objects('App')[0].screenWidth = dimensions.width
     realm.objects('App')[0].orientation = orientation
+  })
+}
+
+export const toggleAnimations = (realm) => {
+  if (!realm) return
+  realm.write(() => {
+    realm.objects('App')[0].animations = !realm.objects('App')[0].animations
   })
 }
 

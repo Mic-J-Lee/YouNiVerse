@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import { Dimensions, Text, View } from 'react-native'
+import { Dimensions, ScrollView, Text, View } from 'react-native'
+import Animations from './Animations'
 
 export default class Menu extends Component {
   render() {
-    let dimensions = Dimensions.get('screen')
+    const dimensions = Dimensions.get('screen')
+    const { realm } = this.props
     return (
       <View style={{
         alignItems: 'center',
@@ -20,7 +22,10 @@ export default class Menu extends Component {
           opacity: .93,
           padding: 10,
           width: dimensions.width * .95 }}>
-          <Text style={{color: 'white', fontSize: 30, fontWeight: 'bold'}} >Menu</Text>
+          <Text style={{color: 'white', fontSize: 30, fontWeight: 'bold'}}> Menu </Text>
+          <ScrollView>
+            <Animations realm={realm}/>
+          </ScrollView>
         </View>
       </View>
     )

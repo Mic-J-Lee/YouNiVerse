@@ -13,21 +13,22 @@ export const UserSchema = {
   name: 'User',
   primaryKey: 'name',
   properties: {
-    name:  'string',
-    gold:  {type: 'int', default: 0},
-    purse: {type: 'int', default: 100},
-    flux:  {type: 'int', default: 0},
-    flask: {type: 'int', default: 0}
+    name:     {type: 'string', default: 'default-user'},
+    language: {type: 'string', default: 'cantonese'},
+    gold:     {type: 'int',    default: 0},
+    purse:    {type: 'int',    default: 100},
+    flux:     {type: 'int',    default: 0},
+    flask:    {type: 'int',    default: 0}
   }
 }
 
 export const RainbowCardSchema = {
   name: 'RainbowCard',
   properties: {
-    introStatus:  {type: 'string', default: 'not started'},
-    activeColor:  {type: 'string', default: 'red'},
     cards:        'Card[]',
     correctCard:  'Card',
+    introStatus:  {type: 'string', default: 'not started'},
+    activeColor:  {type: 'string', default: 'red'},
     playList:     {type: 'string[]'},
     wrongGuesses: {type: 'string[]'},
     red:          {type: 'bool',   default: true},
@@ -48,7 +49,7 @@ export const RainbowCardSchema = {
 export const AppSchema = {
   name: 'App',
   properties: {
-    language:     {type: 'string', default: 'cantonese'},
+    animations:   {type: 'bool',   default: true},
     menu:         {type: 'bool',   default: false},
     orientation:  {type: 'string', default: 'portrait'},
     screenHeight: {type: 'int',    default: 1},
