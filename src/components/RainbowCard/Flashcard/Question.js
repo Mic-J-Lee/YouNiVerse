@@ -23,7 +23,7 @@ export default class Question extends Component {
           <View>
             <MediaButton
               audioFilename={realm.objects('User')[0].language + '_' + realm.objects('RainbowCard')[0].correctCard.audio + '.mp3'}
-              disabled={realm.objects('App')[0].status != 'ready'}
+              disabled={realm.objects('RainbowCard')[0].status != 'ready'}
               image={'hong_kong_flag'}
               style='bigCircle'
             />

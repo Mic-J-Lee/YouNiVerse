@@ -10,6 +10,7 @@ export const drawSixCards = (realm) => {
     realm.objects('RainbowCard')[0].cards = cards
     realm.objects('RainbowCard')[0].wrongGuesses = []
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
+    realm.objects('RainbowCard')[0].status = 'ready'
   })
   if (realm.objects('RainbowCard')[0][realm.objects('RainbowCard')[0].activeColor + 'Mode'].split(' -> ')[1] == 'audio') {
     realm.write(()=>{
@@ -23,7 +24,7 @@ export const drawSixCards = (realm) => {
 
 export const guess = (name, realm) => {
   if (name == realm.objects('RainbowCard')[0].correctCard.name) {
-    nextColor(realm)
+    realm.objects('App')[0].animations ? correctGuessAnimation(realm) : nextColor(realm)
   }
   else {
     realm.write(() => {
@@ -74,6 +75,8 @@ export const toggleStripe = (realm, color) => {
   })
 }
 
+const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+
 const rainbowAbledness = (realm) => {
   if (!realm) return
   let output = {}
@@ -83,4 +86,9 @@ const rainbowAbledness = (realm) => {
   return output
 }
 
-const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
+const correctGuessAnimation = (realm) => {
+  realm.write(()=>{
+    realm.objects('RainbowCard')[0].status = 'wrong choices dropping away'
+    setTimeout(()=>{nextColor(realm)}, 1000)
+  })
+}

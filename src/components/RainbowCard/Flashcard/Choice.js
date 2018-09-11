@@ -1,10 +1,21 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
+import { Animated, Easing, View } from 'react-native'
 import Sound from 'react-native-sound'
 import MediaButton from './MediaButton'
 import { guess } from '../../../realm/revolutions/rainbowCardRevolutions'
 
 export default class Choice extends Component {
+
+  componentWillMount() {
+    this.animatedValue = new Animated.ValueXY()
+  }
+
+  componentDidUpdate() {
+    const { name, realm } = this.props
+    realm.objects('RainbowCard')[0].status === 'wrong choices dropping away' &&
+      realm.objects('RainbowCard')[0].correctCard.name !== name &&
+      setTimeout(()=>this.dropOutOfScreen(), Math.random() * 300)
+  }
 
   loadSound() {
     const { audioFilename } = this.props
@@ -47,6 +58,21 @@ export default class Choice extends Component {
     guess(name, realm)
   }
 
+  dropOutOfScreen() {
+    const { realm } = this.props
+    this.animatedValue.setValue({ x: 0, y: 0})
+    if (realm.objects('RainbowCard')[0].status != 'wrong choices dropping away') return
+    Animated.timing(
+      this.animatedValue,
+      {
+       toValue: {x: 0, y: 800},
+       useNativeDriver: true,
+       duration: 500,
+       easing: Easing.poly(5)
+      }
+    ).start()
+  }
+
   render() {
     const { audioFilename, image, name, realm } = this.props
     if (audioFilename && (!this.sound || this.sound._filename != audioFilename)) this.loadSound()
@@ -61,25 +87,29 @@ export default class Choice extends Component {
       }
       if (RainbowCard[activeColor + 'Mode'].split(' -> ')[1] != 'audio') {
         return (
-          <MediaButton
-            disabled={realm.objects('App')[0].status != 'ready'}
-            image={image}
-            onPress={this.submit}
-            style='smallSquare'
-            wrong={wrong}
-          />
+          <Animated.View style={{transform: this.animatedValue.getTranslateTransform()}} >
+            <MediaButton
+              disabled={realm.objects('RainbowCard')[0].status != 'ready'}
+              image={image}
+              onPress={this.submit}
+              style='smallSquare'
+              wrong={wrong}
+            />
+          </Animated.View>
         )
       } else {
         return (
-          <View style={playList[0] == name && {backgroundColor: 'black'}}>
-            <MediaButton
-              disabled={realm.objects('App')[0].status != 'ready'}
-              image='hong_kong_flag'
-              onPress={this.submit}
-              style='smallCircle'
-              wrong={wrong}
-            />
-          </View>
+          <Animated.View style={{transform: this.animatedValue.getTranslateTransform()}} >
+            <View style={!realm.objects('App')[0].animations && playList[0] == name && {backgroundColor: 'black'}}>
+              <MediaButton
+                disabled={realm.objects('RainbowCard')[0].status != 'ready'}
+                image='hong_kong_flag'
+                onPress={this.submit}
+                style='smallCircle'
+                wrong={wrong}
+              />
+            </View>
+          </Animated.View>
         )
       }
     }

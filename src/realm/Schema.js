@@ -31,6 +31,7 @@ export const RainbowCardSchema = {
     activeColor:  {type: 'string', default: 'red'},
     playList:     {type: 'string[]'},
     wrongGuesses: {type: 'string[]'},
+    status:       {type: 'string', default: 'ready'},
     red:          {type: 'bool',   default: true},
     orange:       {type: 'bool',   default: true},
     yellow:       {type: 'bool',   default: true},
@@ -54,7 +55,6 @@ export const AppSchema = {
     orientation:  {type: 'string', default: 'portrait'},
     screenHeight: {type: 'int',    default: 1},
     screenWidth:  {type: 'int',    default: 0},
-    status:       {type: 'string', default: 'ready'},
     user:         'User?'
   }
 }
