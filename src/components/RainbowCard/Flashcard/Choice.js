@@ -7,7 +7,7 @@ import { guess } from '../../../realm/revolutions/rainbowCardRevolutions'
 export default class Choice extends Component {
 
   componentWillMount() {
-    this.animatedValue = new Animated.ValueXY()
+    this.XY = new Animated.ValueXY()
   }
 
   componentDidUpdate() {
@@ -15,6 +15,10 @@ export default class Choice extends Component {
     realm.objects('RainbowCard')[0].status === 'wrong choices dropping away' &&
       realm.objects('RainbowCard')[0].correctCard.name !== name &&
       setTimeout(()=>this.dropOutOfScreen(), Math.random() * 300)
+    realm.objects('RainbowCard')[0].status === 'right choice and answer exiting together' &&
+      realm.objects('RainbowCard')[0].correctCard.name == name &&
+      this.exitLeft()
+    realm.objects('RainbowCard')[0].status === 'ready' && this.XY.setValue({ x: 0, y: 0})
   }
 
   loadSound() {
@@ -60,15 +64,28 @@ export default class Choice extends Component {
 
   dropOutOfScreen() {
     const { realm } = this.props
-    this.animatedValue.setValue({ x: 0, y: 0})
+    this.XY.setValue({ x: 0, y: 0})
     if (realm.objects('RainbowCard')[0].status != 'wrong choices dropping away') return
     Animated.timing(
-      this.animatedValue,
+      this.XY,
       {
        toValue: {x: 0, y: 800},
        useNativeDriver: true,
        duration: 500,
        easing: Easing.poly(5)
+      }
+    ).start()
+  }
+
+  exitLeft() {
+    this.XY.setValue({ x: 0, y: 0})
+    Animated.timing(
+      this.XY,
+      {
+       toValue: {x: -1000, y: 0},
+       useNativeDriver: true,
+       duration: 500,
+       easing: Easing.cubic
       }
     ).start()
   }
@@ -87,7 +104,7 @@ export default class Choice extends Component {
       }
       if (RainbowCard[activeColor + 'Mode'].split(' -> ')[1] != 'audio') {
         return (
-          <Animated.View style={{transform: this.animatedValue.getTranslateTransform()}} >
+          <Animated.View style={{transform: this.XY.getTranslateTransform()}} >
             <MediaButton
               disabled={realm.objects('RainbowCard')[0].status != 'ready'}
               image={image}
@@ -99,7 +116,7 @@ export default class Choice extends Component {
         )
       } else {
         return (
-          <Animated.View style={{transform: this.animatedValue.getTranslateTransform()}} >
+          <Animated.View style={{transform: this.XY.getTranslateTransform()}} >
             <View style={!realm.objects('App')[0].animations && playList[0] == name && {backgroundColor: 'black'}}>
               <MediaButton
                 disabled={realm.objects('RainbowCard')[0].status != 'ready'}

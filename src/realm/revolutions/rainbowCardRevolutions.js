@@ -89,6 +89,11 @@ const rainbowAbledness = (realm) => {
 const correctGuessAnimation = (realm) => {
   realm.write(()=>{
     realm.objects('RainbowCard')[0].status = 'wrong choices dropping away'
-    setTimeout(()=>{nextColor(realm)}, 1000)
+    setTimeout(()=>{
+      realm.write(()=>{
+        realm.objects('RainbowCard')[0].status = 'right choice and answer exiting together'
+      })
+      setTimeout(()=>{nextColor(realm)}, 1000)
+    }, 1000)
   })
 }
