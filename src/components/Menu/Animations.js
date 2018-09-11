@@ -18,6 +18,7 @@ export default class Animations extends Component {
     	<View style={{
         width: dimensions.width * .85,
         height: dimensions.height * .08,
+        marginBottom: 15,
         flexDirection: 'row'}}>
         <Text style={{
           flex: 3,

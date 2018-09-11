@@ -48,7 +48,8 @@ export default class Ivan extends Component {
   }
 
   componentDidUpdate() {
-    !this.state.menuActive && this.stayOnScreen()
+    const { realm } = this.props
+    realm.objects('App')[0].menu ? this.ivanPosition.setValue({x: 0, y: 0}) : this.stayOnScreen()
   }
 
   ivanPress = () => {
