@@ -58,8 +58,10 @@ export default class Ivan extends Component {
     if (realm.objects('App')[0].menu) {
       this.ivanPositionBeforeMenu = this.ivanPositionValue
       this.ivanPosition.setValue({x: 0, y: 0})
+      this.setState({menuActive: true})
     } else {
       this.ivanPosition.setValue(this.ivanPositionBeforeMenu)
+      this.setState({menuActive: false})
     }
   }
 

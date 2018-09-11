@@ -23,7 +23,7 @@ export default class Menu extends Component {
           padding: 10,
           width: dimensions.width * .95 }}>
           <Text style={{color: 'white', fontSize: 30, fontWeight: 'bold'}}> Menu </Text>
-          <ScrollView>
+          <ScrollView contentContainerStyle={{marginTop: 15}}>
             <Animations realm={realm}/>
           </ScrollView>
         </View>
