@@ -12,6 +12,14 @@ export const drawSixCards = (realm) => {
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
     realm.objects('RainbowCard')[0].status = 'ready'
   })
+  if (realm.objects('App')[0].animations) {
+    realm.write(()=>{realm.objects('RainbowCard')[0].status = 'flashcard entering from top'})
+    setTimeout(()=>{
+      realm.write(()=>{
+        realm.objects('RainbowCard')[0].status = 'ready'
+      })
+    }, 500)
+  }
   if (realm.objects('RainbowCard')[0][realm.objects('RainbowCard')[0].activeColor + 'Mode'].split(' -> ')[1] == 'audio') {
     realm.write(()=>{
       realm.objects('RainbowCard')[0].playList = []

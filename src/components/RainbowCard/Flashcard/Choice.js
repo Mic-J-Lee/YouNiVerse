@@ -63,9 +63,7 @@ export default class Choice extends Component {
   }
 
   dropOutOfScreen() {
-    const { realm } = this.props
     this.XY.setValue({ x: 0, y: 0})
-    if (realm.objects('RainbowCard')[0].status != 'wrong choices dropping away') return
     Animated.timing(
       this.XY,
       {
