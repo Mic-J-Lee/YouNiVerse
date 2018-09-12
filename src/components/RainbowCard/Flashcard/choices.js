@@ -2,7 +2,6 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import Choice from './Choice'
 
-
 export const choices = (realm) => {
   if (!realm) return
   const isPortrait = realm.objects('App')[0].orientation == 'portrait'
@@ -26,24 +25,24 @@ export const choices = (realm) => {
     <View style={{flex: 5, flexDirection: isPortrait ? 'column' : 'row'}}>
       <View style={{flex: 1, flexDirection: isPortrait ? 'row' : 'column'}}>
         <View style={styles.choiceFlexBox}>
-          {choicesArray[0]}
-        </View>
-        <View style={styles.choiceFlexBox}>
           {choicesArray[1]}
         </View>
-        <View style={styles.choiceFlexBox}>
-          {choicesArray[2]}
-        </View>
-      </View>
-      <View style={{flex: 1, flexDirection: isPortrait ? 'row' : 'column'}}>
         <View style={styles.choiceFlexBox}>
           {choicesArray[3]}
         </View>
         <View style={styles.choiceFlexBox}>
-          {choicesArray[4]}
+          {choicesArray[5]}
+        </View>
+      </View>
+      <View style={{flex: 1, flexDirection: isPortrait ? 'row' : 'column'}}>
+        <View style={styles.choiceFlexBox}>
+          {choicesArray[0]}
         </View>
         <View style={styles.choiceFlexBox}>
-          {choicesArray[5]}
+          {choicesArray[2]}
+        </View>
+        <View style={styles.choiceFlexBox}>
+          {choicesArray[4]}
         </View>
       </View>
     </View>

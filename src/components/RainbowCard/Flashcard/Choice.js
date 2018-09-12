@@ -10,8 +10,16 @@ export default class Choice extends Component {
     this.XY = new Animated.ValueXY()
   }
 
+  componentDidMount() {
+    const { audioFilename, name, realm } = this.props
+    audioFilename &&
+      realm.objects('RainbowCard')[0].playList[0] == name &&
+      realm.objects('RainbowCard')[0].status == 'ready' &&
+      this.bounce()
+  }
+
   componentDidUpdate() {
-    const { name, realm } = this.props
+    const { audioFilename, name, realm } = this.props
     realm.objects('RainbowCard')[0].status === 'wrong choices dropping away' &&
       realm.objects('RainbowCard')[0].correctCard.name !== name &&
       setTimeout(()=>this.dropOutOfScreen(), Math.random() * 300)
@@ -19,6 +27,10 @@ export default class Choice extends Component {
       realm.objects('RainbowCard')[0].correctCard.name == name &&
       this.exitLeft()
     realm.objects('RainbowCard')[0].status === 'ready' && this.XY.setValue({ x: 0, y: 0})
+    audioFilename &&
+      realm.objects('RainbowCard')[0].playList[0] == name &&
+      realm.objects('RainbowCard')[0].status == 'ready' &&
+      this.bounce()
   }
 
   loadSound() {
@@ -62,6 +74,27 @@ export default class Choice extends Component {
     guess(name, realm)
   }
 
+  bounce() {
+    this.XY.setValue({ x: 0, y: 0})
+    Animated.timing(
+      this.XY,
+      {
+       toValue: {x: 0, y: -50},
+       useNativeDriver: true,
+       duration: 150,
+      }
+    ).start(()=>{
+      Animated.spring(
+        this.XY,
+        {
+         toValue: {x: 0, y: 0},
+         useNativeDriver: true,
+         bounciness: 20
+        }
+      ).start()
+    })
+  }
+
   dropOutOfScreen() {
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
@@ -97,7 +130,7 @@ export default class Choice extends Component {
       const activeColor = RainbowCard.activeColor
       const playList = RainbowCard.playList
       const wrong = (RainbowCard.wrongGuesses.indexOf(name) != -1)
-      if (playList.length > 0 && playList[0] == name) {
+      if (playList.length > 0 && playList[0] == name && RainbowCard.status == 'ready') {
         setTimeout(()=>{this.playSound()}, 100)
       }
       if (RainbowCard[activeColor + 'Mode'].split(' -> ')[1] != 'audio') {

@@ -9,6 +9,7 @@ export const drawSixCards = (realm) => {
   realm.write(() => {
     realm.objects('RainbowCard')[0].cards = cards
     realm.objects('RainbowCard')[0].wrongGuesses = []
+    realm.objects('RainbowCard')[0].playList = []
     realm.objects('RainbowCard')[0].correctCard = realm.objects('Card')[Math.floor(Math.random()*realm.objects('Card').length)] //need to change to not repeat card
     realm.objects('RainbowCard')[0].status = 'ready'
   })
@@ -101,7 +102,7 @@ const correctGuessAnimation = (realm) => {
       realm.write(()=>{
         realm.objects('RainbowCard')[0].status = 'right choice and answer exiting together'
       })
-      setTimeout(()=>{nextColor(realm)}, 1000)
+      setTimeout(()=>{nextColor(realm)}, 800)
     }, 1000)
   })
 }

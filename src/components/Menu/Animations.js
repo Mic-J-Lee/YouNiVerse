@@ -27,7 +27,6 @@ export default class Animations extends Component {
           alignSelf: 'center'}}> Animations: </Text>
         <OnOffSwitch
           onPress={this.onPress}
-          style={{flex: 1}}
           status={realm.objects('App')[0].animations} />
     	</View>
     )
