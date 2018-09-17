@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native'
-import Images from '../../../assets/dynamicRequire'
-import Sound from 'react-native-sound'
+import React, { Component } from "react"
+import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from "react-native"
+import Images from "../../../assets/dynamicRequire"
+import Sound from "react-native-sound"
 
 export default class MediaButton extends Component {
 
@@ -13,10 +13,10 @@ export default class MediaButton extends Component {
       Sound.MAIN_BUNDLE,
       (error) => {
         if (error) {
-          console.log('failed to load ' + audioFilename, error)
+          console.log("failed to load " + audioFilename, error)
           return
         }
-        console.log('loaded ' + audioFilename + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
+        console.log("loaded " + audioFilename + ", seconds: " + this.sound.getDuration() + ", channels:" + this.sound.getNumberOfChannels())
       }
     )
   }
@@ -29,11 +29,11 @@ export default class MediaButton extends Component {
           // setPlaying(false)
         } else {
           this.sound.reset()
-          console.log('couldnt play ' + this.sound._filename)
+          console.log("couldnt play " + this.sound._filename)
         }
       })
     } else {
-      console.log('Sound object not found')
+      console.log("Sound object not found")
     }
   }
 
@@ -43,7 +43,7 @@ export default class MediaButton extends Component {
   }
 
   render() {
-    const dimensions = Dimensions.get('screen')
+    const dimensions = Dimensions.get("screen")
     const shortSide = dimensions.height > dimensions.width ? dimensions.width : dimensions.height
     const longSide = dimensions.height == shortSide ? dimensions.width : dimensions.height
     const wideAspect = longSide/shortSide > 1.7 ? true : false
@@ -71,7 +71,7 @@ export default class MediaButton extends Component {
       redX: {
         width: wideAspect ? shortSide/3.4 : shortSide/3.8,
         height: wideAspect ? shortSide/3.4 : shortSide/3.8,
-        position: 'absolute',
+        position: "absolute",
         opacity: .75
       }
     })
@@ -83,16 +83,16 @@ export default class MediaButton extends Component {
         onPress={this.onPress}
         disabled={disabled == true} >
         <View style={{
-          justifyContent: 'center',
-          alignItems: 'center'}} >
-          <View style={[styles[style],{overflow: 'hidden'}]} >
+          justifyContent: "center",
+          alignItems: "center"}} >
+          <View style={[styles[style],{overflow: "hidden"}]} >
             <Image
               source={Images[image]}
-              style={{width:'100%',height:'100%'}}
+              style={{width:"100%",height:"100%"}}
             />
           </View>
           {wrong && <Image
-            source={require('../../../assets/images/red_x.png')}
+            source={require("../../../assets/images/red_x.png")}
             style={styles.redX} />
           }
         </View>

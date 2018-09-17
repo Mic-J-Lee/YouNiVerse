@@ -1,20 +1,20 @@
-import React from 'react'
-import { StyleSheet, View } from 'react-native'
-import Choice from './Choice'
+import React from "react"
+import { StyleSheet, View } from "react-native"
+import Choice from "./Choice"
 
 export const choices = (realm) => {
   if (!realm) return
-  const isPortrait = realm.objects('App')[0].orientation == 'portrait'
+  const isPortrait = realm.objects("App")[0].orientation == "portrait"
   let choicesArray = []
-  const cards = realm.objects('RainbowCard')[0].cards
-  const RainbowCard = realm.objects('RainbowCard')[0]
+  const cards = realm.objects("RainbowCard")[0].cards
+  const RainbowCard = realm.objects("RainbowCard")[0]
   const activeColor = RainbowCard.activeColor
   for (let i = 0; i < cards.length; i++) {
-    let audioFilename = realm.objects('User')[0].language + '_' + cards[i].audio + '.mp3'
+    let audioFilename = realm.objects("User")[0].language + "_" + cards[i].audio + ".mp3"
     choicesArray.push(
       <Choice
         audioFilename={audioFilename}
-        image={cards[i][RainbowCard[activeColor + 'Mode'].split(' -> ')[1]]}
+        image={cards[i][RainbowCard[activeColor + "Mode"].split(" -> ")[1]]}
         key={cards[i].name + cards[i].audio}
         name={cards[i].name}
         realm={realm}
@@ -22,8 +22,8 @@ export const choices = (realm) => {
     )
   }
   return (
-    <View style={{flex: 5, flexDirection: isPortrait ? 'column' : 'row'}}>
-      <View style={{flex: 1, flexDirection: isPortrait ? 'row' : 'column'}}>
+    <View style={{flex: 5, flexDirection: isPortrait ? "column" : "row"}}>
+      <View style={{flex: 1, flexDirection: isPortrait ? "row" : "column"}}>
         <View style={styles.choiceFlexBox}>
           {choicesArray[1]}
         </View>
@@ -34,7 +34,7 @@ export const choices = (realm) => {
           {choicesArray[5]}
         </View>
       </View>
-      <View style={{flex: 1, flexDirection: isPortrait ? 'row' : 'column'}}>
+      <View style={{flex: 1, flexDirection: isPortrait ? "row" : "column"}}>
         <View style={styles.choiceFlexBox}>
           {choicesArray[0]}
         </View>
@@ -52,7 +52,7 @@ export const choices = (realm) => {
 const styles = StyleSheet.create({
   choiceFlexBox: {
     flex:1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center"
   }
 })

@@ -75,6 +75,8 @@ export default class Choice extends Component {
   }
 
   bounce() {
+    const { realm } = this.props
+    if (!realm.objects("App")[0].animations) return
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
