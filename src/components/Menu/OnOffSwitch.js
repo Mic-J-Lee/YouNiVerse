@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React, { Component } from "react"
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
 
 export default class OnOffSwitch extends Component {
   render() {
-  	const style = this.props.status ? 'on' : 'off'
+  	const style = this.props.status ? "on" : "off"
     return (
     	<TouchableOpacity style={styles[style]} onPress={this.props.onPress}>
-    		<Text style={{fontSize: 25, color: 'white'}}>{this.props.status ? 'On' : 'Off'}</Text>
+    		<Text style={{fontSize: 25, color: "white"}}>{this.props.status ? "On" : "Off"}</Text>
     	</TouchableOpacity>
     )
   }
@@ -15,15 +15,15 @@ export default class OnOffSwitch extends Component {
 const styles = StyleSheet.create({
   on: {
   	flex: 1,
-    backgroundColor: 'blue',
+    backgroundColor: "blue",
     borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center"
   },
   off: {
   	flex: 1,
     borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center"
   }
 })

@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Animated, Easing, View } from 'react-native'
-import MediaButton from './MediaButton'
+import React, { Component } from "react"
+import { Animated, Easing, View } from "react-native"
+import MediaButton from "./MediaButton"
 
 export default class Question extends Component {
 
@@ -10,8 +10,8 @@ export default class Question extends Component {
 
   componentDidUpdate() {
     const { realm } = this.props
-    realm.objects('RainbowCard')[0].status === 'right choice and answer exiting together' && this.exitLeft()
-    realm.objects('RainbowCard')[0].status === 'ready' && this.XY.setValue({ x: 0, y: 0})
+    realm.objects("RainbowCard")[0].status === "right choice and answer exiting together" && this.exitLeft()
+    realm.objects("RainbowCard")[0].status === "ready" && this.XY.setValue({ x: 0, y: 0})
   }
 
   exitLeft() {
@@ -31,15 +31,15 @@ export default class Question extends Component {
     const { realm } = this.props
     const question = () => {
       if (!realm) return
-      const RainbowCard = realm.objects('RainbowCard')[0]
+      const RainbowCard = realm.objects("RainbowCard")[0]
       const activeColor = RainbowCard.activeColor
-      if (RainbowCard[activeColor + 'Mode'].split(' -> ')[0] != 'audio') {
+      if (RainbowCard[activeColor + "Mode"].split(" -> ")[0] != "audio") {
         return (
           <Animated.View style={{transform: this.XY.getTranslateTransform()}} >
             <MediaButton
               disabled={true}
-              image={realm && realm.objects('RainbowCard')[0].correctCard[RainbowCard[activeColor + 'Mode'].split(' -> ')[0]]}
-              style='bigSquare'
+              image={realm && realm.objects("RainbowCard")[0].correctCard[RainbowCard[activeColor + "Mode"].split(" -> ")[0]]}
+              style="bigSquare"
             />
           </Animated.View>
         )
@@ -47,10 +47,10 @@ export default class Question extends Component {
         return (
           <Animated.View style={{transform: this.XY.getTranslateTransform()}} >
             <MediaButton
-              audioFilename={realm.objects('User')[0].language + '_' + realm.objects('RainbowCard')[0].correctCard.audio + '.mp3'}
-              disabled={realm.objects('RainbowCard')[0].status != 'ready'}
-              image={'hong_kong_flag'}
-              style='bigCircle'
+              audioFilename={realm.objects("User")[0].language + "_" + realm.objects("RainbowCard")[0].correctCard.audio + ".mp3"}
+              disabled={realm.objects("RainbowCard")[0].status != "ready"}
+              image={"hong_kong_flag"}
+              style="bigCircle"
             />
           </Animated.View>
         )
@@ -59,8 +59,8 @@ export default class Question extends Component {
     return (
       <View style={{
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'}} >
+        justifyContent: "center",
+        alignItems: "center"}} >
         {question()}
       </View>
     )

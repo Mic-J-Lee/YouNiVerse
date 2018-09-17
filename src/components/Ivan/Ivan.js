@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { Animated, Dimensions, PanResponder, TouchableWithoutFeedback, View } from 'react-native'
-import Images from '../../assets/dynamicRequire'
-import SpeechBubble from './SpeechBubble'
-import { toggleMenu, togglePause } from '../../realm/revolutions/appRevolutions'
+import React, { Component } from "react"
+import { Animated, Dimensions, PanResponder, TouchableWithoutFeedback, View } from "react-native"
+import Images from "../../assets/dynamicRequire"
+import SpeechBubble from "./SpeechBubble"
+import { toggleMenu, togglePause } from "../../realm/revolutions/appRevolutions"
 
 
 export default class Ivan extends Component {
@@ -49,14 +49,14 @@ export default class Ivan extends Component {
 
   componentDidUpdate() {
     const { realm } = this.props
-    realm.objects('App')[0].menu ? this.ivanPosition.setValue({x: 0, y: 0}) : this.stayOnScreen()
+    realm.objects("App")[0].menu ? this.ivanPosition.setValue({x: 0, y: 0}) : this.stayOnScreen()
   }
 
   ivanPress = () => {
     const { realm } = this.props
     if (!realm) return
     toggleMenu(realm)
-    if (realm.objects('App')[0].menu) {
+    if (realm.objects("App")[0].menu) {
       this.ivanPositionBeforeMenu = this.ivanPositionValue
       this.ivanPosition.setValue({x: 0, y: 0})
       this.setState({menuActive: true})
@@ -67,7 +67,7 @@ export default class Ivan extends Component {
   }
 
   stayOnScreen = () => {
-    const dimensions = Dimensions.get('screen')
+    const dimensions = Dimensions.get("screen")
     if (this.ivanPositionValue.x < -20) this.ivanPosition.x.setValue(-20)
     if (this.ivanPositionValue.y < -20) this.ivanPosition.y.setValue(-20)
     if (this.ivanPositionValue.x > dimensions.width - 50) this.ivanPosition.x.setValue(dimensions.width - 50)
@@ -76,17 +76,17 @@ export default class Ivan extends Component {
 
   render() {
     const { realm } = this.props
-    const dimensions = Dimensions.get('screen')
+    const dimensions = Dimensions.get("screen")
     const shortSide = dimensions.height > dimensions.width ? dimensions.width : dimensions.height
     const longSide = dimensions.height == shortSide ? dimensions.width : dimensions.height
     const wideAspect = longSide/shortSide > 1.7 ? true : false
     return (
       <View 
-        pointerEvents='box-none'
+        pointerEvents="box-none"
         style={{
           height: dimensions.height,
           width: dimensions.width,
-          position: 'absolute'}} >
+          position: "absolute"}} >
         <Animated.View style={{
           height: wideAspect ? shortSide/5 : shortSide/7,
           width: wideAspect ? shortSide/5 : shortSide/7,
@@ -98,9 +98,9 @@ export default class Ivan extends Component {
               style={{
                 height: wideAspect ? shortSide/5 : shortSide/7,
                 width: wideAspect ? shortSide/5 : shortSide/7,
-                position:'absolute'
+                position:"absolute"
               }}
-              resizeMode='contain' />
+              resizeMode="contain" />
           </TouchableWithoutFeedback>
         </Animated.View>
       </View>

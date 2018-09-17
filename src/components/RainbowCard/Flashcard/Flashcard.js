@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import { Animated, View } from 'react-native'
-import Question from './Question'
-import { choices } from './choices'
+import React, { Component } from "react"
+import { Animated, View } from "react-native"
+import Question from "./Question"
+import { choices } from "./choices"
 
 export default class FlashCard extends Component {
 
@@ -11,7 +11,7 @@ export default class FlashCard extends Component {
 
   componentDidUpdate() {
     const { realm } = this.props
-    realm.objects('RainbowCard')[0].status == 'flashcard entering from top' && this.enterScreen()
+    realm.objects("RainbowCard")[0].status == "flashcard entering from top" && this.enterScreen()
   }
 
   enterScreen() {
@@ -28,12 +28,12 @@ export default class FlashCard extends Component {
 
   render() {
     const { realm } = this.props
-    const orientation = realm && realm.objects('App')[0].orientation
-    const isPortrait = orientation == 'portrait'
+    const orientation = realm && realm.objects("App")[0].orientation
+    const isPortrait = orientation == "portrait"
     return (
       <Animated.View style={{
         flex: 1,
-        flexDirection: isPortrait ? 'column' : 'row',
+        flexDirection: isPortrait ? "column" : "row",
         transform: this.XY.getTranslateTransform()}}>
         <View style={{flex: 4}}>
           <Question realm={realm}/>
