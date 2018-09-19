@@ -1,46 +1,28 @@
 import React, { Component } from "react"
-import { Alert, Animated, PanResponder, View } from "react-native"
-import { toggleStripe, setActiveColor } from "../../../realm/amendments/rainbowCard"
+import { TouchableOpacity } from "react-native"
+import { setActiveColor } from "../../../realm/amendments/rainbowCard"
 
 export default class Stripe extends Component {
 
-  state = {
-    touched: false
-  }
-
-  componentWillMount() {
-    this.panResponder = PanResponder.create({
-      onMoveShouldSetPanResponder:(evt, gestureState) => true,
-      onPanResponderMove: (evt, gestureState) => {
-        this.setState({touched:true})
-        //should set some sort of visual feedback
-      },
-      onPanResponderRelease: (evt, gestureState) => {
-        const { color, isActive, isEnabled, realm } = this.props
-        const orientation = realm && realm.objects("App")[0].orientation
-        const dyOrDx = orientation == "portrait" ? "dy" : "dx"
-        const sideToSide = dyOrDx == "dx" ? "dy" : "dx"
-        if (gestureState[dyOrDx] > 30 && isEnabled) {
-          setActiveColor(realm, color)
-        } else if (gestureState[sideToSide] < 30 && gestureState[sideToSide] > -30 && !isActive) toggleStripe(realm, color)
-        this.setState({touched:false})
-      }
-    })
+  onPress = () => {
+    const { color, realm } = this.props
+    setActiveColor(realm, color)
   }
 
   render() {
-    const { realm, displayedColor, isActive, isEnabled } = this.props
-    const orientation = realm && realm.objects("App")[0].orientation
-    const isPortrait = orientation == "portrait"
-    const shrunkSize = isEnabled ? "80%" : "70%"
+    const { realm, color } = this.props
+    const isActive = realm && realm.objects("RainbowCard")[0].activeColor == color
+    const isPortrait = realm && realm.objects("App")[0].orientation == "portrait"
     return (
-      <View style={{
-        flex: 1,
-        flexDirection: isPortrait ? "row" : "column", backgroundColor: displayedColor,
-        width: !isPortrait && isActive ? "100%" : shrunkSize,
-        height: isPortrait && isActive ? "100%" : shrunkSize
-        }} {...this.panResponder.panHandlers}>
-      </View>
+      <TouchableOpacity
+        onPress={this.onPress}
+        style={{
+          flex: 1,
+          flexDirection: isPortrait ? "row" : "column", backgroundColor: color,
+          width: !isPortrait && isActive ? "100%" : "80%",
+          height: isPortrait && isActive ? "100%" : "80%"
+        }}
+      />
     )
   }
 }
