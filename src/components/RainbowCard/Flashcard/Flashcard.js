@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Animated, View } from "react-native"
+import { Animated, Dimensions, View } from "react-native"
 import Question from "./Question"
 import { choices } from "./choices"
 
@@ -15,7 +15,8 @@ export default class FlashCard extends Component {
   }
 
   enterScreen() {
-    this.XY.setValue({ x: 0, y: -500})
+    const dimensions = Dimensions.get("screen")
+    this.XY.setValue({ x: 0, y: -dimensions.height})
     Animated.spring(
       this.XY,
       {

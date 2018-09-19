@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Animated, Easing, View } from 'react-native'
+import { Animated, Dimensions, Easing, View } from 'react-native'
 import Sound from 'react-native-sound'
 import MediaButton from './MediaButton'
 import { guess } from '../../../realm/amendments/rainbowCard'
@@ -76,12 +76,13 @@ export default class Choice extends Component {
 
   bounce() {
     const { realm } = this.props
+    const dimensions = Dimensions.get("screen")
     if (!realm.objects("App")[0].animations) return
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
       {
-       toValue: {x: 0, y: -50},
+       toValue: {x: 0, y: -dimensions.height/20},
        useNativeDriver: true,
        duration: 150,
       }
@@ -98,11 +99,12 @@ export default class Choice extends Component {
   }
 
   dropOutOfScreen() {
+    const dimensions = Dimensions.get("screen")
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
       {
-       toValue: {x: 0, y: 800},
+       toValue: {x: 0, y: dimensions.height},
        useNativeDriver: true,
        duration: 500,
        easing: Easing.poly(5)
@@ -111,11 +113,12 @@ export default class Choice extends Component {
   }
 
   exitLeft() {
+    const dimensions = Dimensions.get("screen")
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
       {
-       toValue: {x: -1000, y: 0},
+       toValue: {x: -dimensions.width, y: 0},
        useNativeDriver: true,
        duration: 500,
        easing: Easing.cubic

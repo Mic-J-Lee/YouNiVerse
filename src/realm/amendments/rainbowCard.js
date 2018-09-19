@@ -102,7 +102,7 @@ const correctGuessAnimation = (realm) => {
       realm.write(()=>{
         realm.objects("RainbowCard")[0].status = "right choice and answer exiting together"
       })
-      setTimeout(()=>{nextColor(realm)}, 800)
-    }, 1000)
+      setTimeout(()=>{nextColor(realm)}, 400)
+    }, 700)
   })
 }
