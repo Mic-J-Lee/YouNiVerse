@@ -3,7 +3,7 @@ import { Platform, Text, View } from "react-native"
 import Ivan from "./components/Ivan/Ivan"
 import Menu from "./components/Menu/Menu"
 import RainbowCard from "./components/RainbowCard/RainbowCard"
-import { establish, loadSchema, setOrientation } from "./realm/revolutions/appRevolutions"
+import { establish, loadSchema, setOrientation } from "./realm/amendments/app"
 const Realm = require("realm")
 
 // type Props = {}

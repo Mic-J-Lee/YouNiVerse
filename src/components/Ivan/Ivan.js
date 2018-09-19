@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { Animated, Dimensions, PanResponder, TouchableWithoutFeedback, View } from "react-native"
 import Images from "../../assets/dynamicRequire"
 import SpeechBubble from "./SpeechBubble"
-import { toggleMenu, togglePause } from "../../realm/revolutions/appRevolutions"
+import { toggleMenu, togglePause } from "../../realm/amendments/app"
 
 
 export default class Ivan extends Component {

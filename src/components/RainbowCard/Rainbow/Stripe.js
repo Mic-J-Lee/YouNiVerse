@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Alert, Animated, PanResponder, View } from "react-native"
-import { toggleStripe, setActiveColor } from "../../../realm/revolutions/rainbowCardRevolutions"
+import { toggleStripe, setActiveColor } from "../../../realm/amendments/rainbowCard"
 
 export default class Stripe extends Component {
 

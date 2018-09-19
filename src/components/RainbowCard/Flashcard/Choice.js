@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Animated, Easing, View } from 'react-native'
 import Sound from 'react-native-sound'
 import MediaButton from './MediaButton'
-import { guess } from '../../../realm/revolutions/rainbowCardRevolutions'
+import { guess } from '../../../realm/amendments/rainbowCard'
 
 export default class Choice extends Component {
 
