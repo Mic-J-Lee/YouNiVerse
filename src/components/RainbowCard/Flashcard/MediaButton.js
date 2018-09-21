@@ -16,7 +16,6 @@ export default class MediaButton extends Component {
           console.log('failed to load ' + audioFilename, error)
           return
         }
-        console.log('loaded ' + audioFilename + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
       }
     )
   }
@@ -30,6 +29,7 @@ export default class MediaButton extends Component {
         } else {
           this.sound.reset()
           console.log('couldnt play ' + this.sound._filename)
+          setTimeout(()=>{this.playSound()}, 100)
         }
       })
     } else {
@@ -78,25 +78,24 @@ export default class MediaButton extends Component {
     const { audioFilename, disabled, image, style, wrong } = this.props
     if (audioFilename && (!this.sound || this.sound._filename != audioFilename)) this.loadSound()
     return (
-      <TouchableOpacity
-        style={styles[style]}
-        onPress={this.onPress}
-        disabled={disabled == true} >
-        <View style={{
-          justifyContent: 'center',
-          alignItems: 'center'}} >
-          <View style={[styles[style],{overflow: 'hidden'}]} >
-            <Image
-              source={Images[image]}
-              style={{width:'100%',height:'100%'}}
-            />
-          </View>
+      <View style={[styles[style],
+        {overflow: 'hidden',
+        justifyContent: 'center',
+        alignItems: 'center'}]} >
+        <TouchableOpacity
+          style={styles[style]} //WHY DOESNT THIS WORK ARGHHHHHGHGHH
+          onPress={this.onPress}
+          disabled={disabled || wrong} >
+          <Image
+            source={Images[image]}
+            style={styles[style]}
+          />
           {wrong && <Image
-            source={require('../../../assets/images/red_x.png')}
+            source={require('./red_x.png')}
             style={styles.redX} />
           }
-        </View>
-      </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
     )
   }
 }

@@ -36,9 +36,11 @@ export const guess = (name, realm) => {
     realm.objects('App')[0].animations ? correctGuessAnimation(realm) : nextColor(realm)
   }
   else {
-    realm.write(() => {
-      console.log(realm.objects('RainbowCard')[0].wrongGuesses.push(name))
-    })
+    if (realm.objects('RainbowCard')[0].wrongGuesses.indexOf(name) == -1) {
+      realm.write(() => {
+        realm.objects('RainbowCard')[0].wrongGuesses.push(name)
+      })
+    }
   }
 }
 

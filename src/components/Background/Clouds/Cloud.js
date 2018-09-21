@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Animated, Easing, Dimensions, PanResponder, View } from 'react-native'
-import Images from '../../../assets/dynamicRequire'
+import Clouds from './dynamicRequire'
 
 export default class Cloud extends Component {
 
@@ -76,10 +76,10 @@ export default class Cloud extends Component {
 
 
   render() {
-    const { image, size } = this.props
+    const { imageName, size } = this.props
     return (
       <Animated.Image {...this.panResponder.panHandlers}
-        source={Images[image]}
+        source={Clouds[imageName]}
         style={{
           height: size,
           width: 260,

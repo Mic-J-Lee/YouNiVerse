@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, PanResponder, TouchableWithoutFeedback, View } from 'react-native'
-import Images from '../../assets/dynamicRequire'
 import SpeechBubble from './SpeechBubble'
 import Menu from './Menu/Menu'
 import { toggleMenu, togglePause } from '../../realm/decrees/App'
@@ -96,7 +95,7 @@ export default class Ivan extends Component {
         }} {...this.panResponder.panHandlers} >  
           <TouchableWithoutFeedback onPress={this.ivanPress}>
             <Animated.Image
-              source={Images.menu_burger}
+              source={require('./menu_burger.png')}
               style={{
                 height: wideAspect ? shortSide/5 : shortSide/7,
                 width: wideAspect ? shortSide/5 : shortSide/7,

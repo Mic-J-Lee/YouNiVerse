@@ -44,7 +44,6 @@ export default class Choice extends Component {
           console.log('failed to load ' + audioFilename, error)
           return
         }
-        console.log('loaded ' + audioFilename + ', seconds: ' + this.sound.getDuration() + ', channels:' + this.sound.getNumberOfChannels())
       }
     )
   }

@@ -8,9 +8,9 @@ export default class Clouds extends Component {
   	const { realm } = this.props
     return (
       <View>
-        <Cloud image={'cloud1'} size={120} realm={realm} />
-        <Cloud image={'cloud2'} size={130} realm={realm} />
-        <Cloud image={'cloud3'} size={230} realm={realm} />
+        <Cloud imageName={'cloud1'} size={120} realm={realm} />
+        <Cloud imageName={'cloud2'} size={130} realm={realm} />
+        <Cloud imageName={'cloud3'} size={230} realm={realm} />
       </View>
     )
   }
