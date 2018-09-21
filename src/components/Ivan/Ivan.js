@@ -2,7 +2,8 @@ import React, { Component } from "react"
 import { Animated, Dimensions, PanResponder, TouchableWithoutFeedback, View } from "react-native"
 import Images from "../../assets/dynamicRequire"
 import SpeechBubble from "./SpeechBubble"
-import { toggleMenu, togglePause } from "../../realm/amendments/app"
+import Menu from "./Menu/Menu"
+import { toggleMenu, togglePause } from "../../realm/decrees/App"
 
 
 export default class Ivan extends Component {
@@ -87,6 +88,7 @@ export default class Ivan extends Component {
           height: dimensions.height,
           width: dimensions.width,
           position: "absolute"}} >
+        { realm && realm.objects("App")[0].menu && <Menu realm={realm} /> }
         <Animated.View style={{
           height: wideAspect ? shortSide/5 : shortSide/7,
           width: wideAspect ? shortSide/5 : shortSide/7,

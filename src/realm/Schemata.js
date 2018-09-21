@@ -45,10 +45,11 @@ export const AppSchema = {
   name: "App",
   properties: {
     animations:   {type: "bool",   default: true},
+    background:   {type: "string", default: "clouds"},
+    height:       {type: "int",    default: 1},
+    width:        {type: "int",    default: 0},
     menu:         {type: "bool",   default: false},
     orientation:  {type: "string", default: "portrait"},
-    screenHeight: {type: "int",    default: 1},
-    screenWidth:  {type: "int",    default: 0},
     user:         "User?"
   }
 }

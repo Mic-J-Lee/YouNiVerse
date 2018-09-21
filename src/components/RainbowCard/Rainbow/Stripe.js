@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { TouchableOpacity } from "react-native"
-import { setActiveColor } from "../../../realm/amendments/rainbowCard"
+import { setActiveColor } from "../../../realm/decrees/RainbowCard"
 
 export default class Stripe extends Component {
 

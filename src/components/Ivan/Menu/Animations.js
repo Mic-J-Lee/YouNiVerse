@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { Dimensions, Text, View } from "react-native"
 import OnOffSwitch from "./OnOffSwitch"
-import { toggleAnimations } from "../../realm/amendments/app"
+import { toggleAnimations } from "../../../realm/decrees/App"
 
 export default class Animations extends Component {
 

@@ -22,26 +22,26 @@ export const choices = (realm) => {
     )
   }
   return (
-    <View style={{flex: 5, flexDirection: isPortrait ? "column" : "row"}}>
-      <View style={{flex: 1, flexDirection: isPortrait ? "row" : "column"}}>
-        <View style={styles.choiceFlexBox}>
+    <View pointerEvents="box-none" style={{flex: 5, flexDirection: isPortrait ? "column" : "row"}}>
+      <View pointerEvents="box-none" style={{flex: 1, flexDirection: isPortrait ? "row" : "column"}}>
+        <View pointerEvents="box-none" style={styles.choiceFlexBox}>
           {choicesArray[1]}
         </View>
-        <View style={styles.choiceFlexBox}>
+        <View pointerEvents="box-none" style={styles.choiceFlexBox}>
           {choicesArray[3]}
         </View>
-        <View style={styles.choiceFlexBox}>
+        <View pointerEvents="box-none" style={styles.choiceFlexBox}>
           {choicesArray[5]}
         </View>
       </View>
-      <View style={{flex: 1, flexDirection: isPortrait ? "row" : "column"}}>
-        <View style={styles.choiceFlexBox}>
+      <View pointerEvents="box-none" style={{flex: 1, flexDirection: isPortrait ? "row" : "column"}}>
+        <View pointerEvents="box-none" style={styles.choiceFlexBox}>
           {choicesArray[0]}
         </View>
-        <View style={styles.choiceFlexBox}>
+        <View pointerEvents="box-none" style={styles.choiceFlexBox}>
           {choicesArray[2]}
         </View>
-        <View style={styles.choiceFlexBox}>
+        <View pointerEvents="box-none" style={styles.choiceFlexBox}>
           {choicesArray[4]}
         </View>
       </View>

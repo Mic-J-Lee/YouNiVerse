@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Animated, Dimensions, Easing, View } from 'react-native'
 import Sound from 'react-native-sound'
 import MediaButton from './MediaButton'
-import { guess } from '../../../realm/amendments/rainbowCard'
+import { guess } from '../../../realm/decrees/RainbowCard'
 
 export default class Choice extends Component {
 
@@ -167,7 +167,7 @@ export default class Choice extends Component {
       }
     }
     return (
-      <View style={{
+      <View pointerEvents="box-none" style={{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'}} >

@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native"
-import { AppSchema, CardSchema, RainbowCardSchema, UserSchema } from "../Schema"
+import { AppSchema, CardSchema, RainbowCardSchema, UserSchema } from "../Schemata"
 
 export const establish = (realm) => {
   if (!realm) return
@@ -46,8 +46,8 @@ export const setOrientation = (realm) => {
   const dimensions = Dimensions.get("screen")
   const orientation = dimensions.height < dimensions.width ? "landscape" : "portrait"
   realm.write(() => {
-    realm.objects("App")[0].screenHeight = dimensions.height
-    realm.objects("App")[0].screenWidth = dimensions.width
+    realm.objects("App")[0].height = dimensions.height
+    realm.objects("App")[0].width = dimensions.width
     realm.objects("App")[0].orientation = orientation
   })
 }

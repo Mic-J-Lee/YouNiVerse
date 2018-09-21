@@ -32,14 +32,14 @@ export default class FlashCard extends Component {
     const orientation = realm && realm.objects("App")[0].orientation
     const isPortrait = orientation == "portrait"
     return (
-      <Animated.View style={{
+      <Animated.View pointerEvents="box-none" style={{
         flex: 1,
         flexDirection: isPortrait ? "column" : "row",
         transform: this.XY.getTranslateTransform()}}>
-        <View style={{flex: 4}}>
+        <View pointerEvents="box-none" style={{flex: 4}}>
           <Question realm={realm}/>
         </View>
-        <View style={{flex: 5}}>
+        <View pointerEvents="box-none" style={{flex: 5}}>
           {choices(realm)}
         </View>
       </Animated.View>

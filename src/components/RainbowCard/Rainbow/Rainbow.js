@@ -21,7 +21,7 @@ export default class Rainbow extends Component {
       )
     }
     return (
-      <View style={{
+      <View pointerEvents="box-none" style={{
         flex: 6,
         flexDirection: isPortrait ? "row" : "column"}}>
         {allStripes}

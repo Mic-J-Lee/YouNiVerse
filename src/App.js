@@ -1,9 +1,9 @@
 import React, { Component } from "react"
-import { Platform, Text, View } from "react-native"
+import { View } from "react-native"
+import Background from "./components/Background/Background"
 import Ivan from "./components/Ivan/Ivan"
-import Menu from "./components/Menu/Menu"
 import RainbowCard from "./components/RainbowCard/RainbowCard"
-import { establish, loadSchema, setOrientation } from "./realm/amendments/app"
+import { establish, loadSchema } from "./realm/decrees/App"
 const Realm = require("realm")
 
 // type Props = {}
@@ -31,11 +31,10 @@ export default class App extends Component<Props> {
             flex: 12,
             flexDirection: orientation == "landscape" ? "row" : "column",
             backgroundColor: "powderblue"}}>
-          {/* <Clouds /> */}
+          <Background realm={realm} />
           <RainbowCard realm={realm} />
         </View>
         <View style={{flex: 1, backgroundColor: "pink"}} />
-        { realm && realm.objects("App")[0].menu && <Menu realm={realm} /> }
         <Ivan realm={realm} />
       </View>
     )

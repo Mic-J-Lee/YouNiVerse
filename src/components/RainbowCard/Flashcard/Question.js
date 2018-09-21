@@ -57,7 +57,7 @@ export default class Question extends Component {
       }
     }
     return (
-      <View style={{
+      <View pointerEvents="box-none" style={{
         flex: 1,
         justifyContent: "center",
         alignItems: "center"}} >
