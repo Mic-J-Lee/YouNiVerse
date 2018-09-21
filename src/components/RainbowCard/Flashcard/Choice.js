@@ -76,8 +76,8 @@ export default class Choice extends Component {
 
   bounce() {
     const { realm } = this.props
-    const dimensions = Dimensions.get("screen")
-    if (!realm.objects("App")[0].animations) return
+    const dimensions = Dimensions.get('screen')
+    if (!realm.objects('App')[0].animations) return
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
@@ -99,7 +99,7 @@ export default class Choice extends Component {
   }
 
   dropOutOfScreen() {
-    const dimensions = Dimensions.get("screen")
+    const dimensions = Dimensions.get('screen')
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
@@ -113,7 +113,7 @@ export default class Choice extends Component {
   }
 
   exitLeft() {
-    const dimensions = Dimensions.get("screen")
+    const dimensions = Dimensions.get('screen')
     this.XY.setValue({ x: 0, y: 0})
     Animated.timing(
       this.XY,
@@ -167,7 +167,7 @@ export default class Choice extends Component {
       }
     }
     return (
-      <View pointerEvents="box-none" style={{
+      <View pointerEvents='box-none' style={{
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'}} >

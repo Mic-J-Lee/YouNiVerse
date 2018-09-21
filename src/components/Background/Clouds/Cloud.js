@@ -1,6 +1,6 @@
-import React, { Component } from "react"
-import { Animated, Easing, Dimensions, PanResponder, View } from "react-native"
-import Images from "../../../assets/dynamicRequire"
+import React, { Component } from 'react'
+import { Animated, Easing, Dimensions, PanResponder, View } from 'react-native'
+import Images from '../../../assets/dynamicRequire'
 
 export default class Cloud extends Component {
 
@@ -10,11 +10,11 @@ export default class Cloud extends Component {
 
   componentWillMount() {
     const { realm } = this.props
-    if (!realm.objects("App")[0].animations) {
-      this.cloudStartingPosition = {x: Dimensions.get("screen").width * Math.random() - 100, y: Dimensions.get("screen").height * Math.random() - 100}
+    if (!realm.objects('App')[0].animations) {
+      this.cloudStartingPosition = {x: Dimensions.get('screen').width * Math.random() - 100, y: Dimensions.get('screen').height * Math.random() - 100}
       this.setState({travelTime: 0})
-    } else if (realm.objects("App")[0].animations) {
-      this.cloudStartingPosition = {x: Dimensions.get("screen").width, y: Dimensions.get("screen").height * Math.random() - 100}
+    } else if (realm.objects('App')[0].animations) {
+      this.cloudStartingPosition = {x: Dimensions.get('screen').width, y: Dimensions.get('screen').height * Math.random() - 100}
     }
     this.XY = new Animated.ValueXY(this.cloudStartingPosition);
     this.XY.addListener((value) => this._XY = value);
@@ -46,21 +46,21 @@ export default class Cloud extends Component {
 
   componentDidUpdate() {
     const { realm } = this.props
-    if (!realm.objects("App")[0].animations && this.state.travelTime != 0) {
-      this.XY.setValue({x: Dimensions.get("screen").width * Math.random() - 100, y: Dimensions.get("screen").height * Math.random() - 100})
+    if (!realm.objects('App')[0].animations && this.state.travelTime != 0) {
+      this.XY.setValue({x: Dimensions.get('screen').width * Math.random() - 100, y: Dimensions.get('screen').height * Math.random() - 100})
       this.setState({travelTime: 0})
-    } else if (realm.objects("App")[0].animations && this.state.travelTime == 0) {
+    } else if (realm.objects('App')[0].animations && this.state.travelTime == 0) {
       this.float()
     }
   }
 
   float(duration) {
     const { realm } = this.props
-    if (!realm.objects("App")[0].animations) return
+    if (!realm.objects('App')[0].animations) return
     Animated.timing(
-      this.XY["x"],
+      this.XY['x'],
       {
-        toValue: -Dimensions.get("screen").width,
+        toValue: -Dimensions.get('screen').width,
         useNativeDriver: true,
         duration: duration || this.state.travelTime,
         easing: Easing.linear,
@@ -83,10 +83,10 @@ export default class Cloud extends Component {
         style={{
           height: size,
           width: 260,
-          position: "absolute", 
+          position: 'absolute', 
           transform: this.XY.getTranslateTransform()
         }} 
-        resizeMode="contain" />
+        resizeMode='contain' />
     )
   }
 }

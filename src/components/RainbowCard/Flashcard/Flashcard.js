@@ -1,7 +1,7 @@
-import React, { Component } from "react"
-import { Animated, Dimensions, View } from "react-native"
-import Question from "./Question"
-import { choices } from "./choices"
+import React, { Component } from 'react'
+import { Animated, Dimensions, View } from 'react-native'
+import Question from './Question'
+import { choices } from './choices'
 
 export default class FlashCard extends Component {
 
@@ -11,11 +11,11 @@ export default class FlashCard extends Component {
 
   componentDidUpdate() {
     const { realm } = this.props
-    realm.objects("RainbowCard")[0].status == "flashcard entering from top" && this.enterScreen()
+    realm.objects('RainbowCard')[0].status == 'flashcard entering from top' && this.enterScreen()
   }
 
   enterScreen() {
-    const dimensions = Dimensions.get("screen")
+    const dimensions = Dimensions.get('screen')
     this.XY.setValue({ x: 0, y: -dimensions.height})
     Animated.spring(
       this.XY,
@@ -29,17 +29,17 @@ export default class FlashCard extends Component {
 
   render() {
     const { realm } = this.props
-    const orientation = realm && realm.objects("App")[0].orientation
-    const isPortrait = orientation == "portrait"
+    const orientation = realm && realm.objects('App')[0].orientation
+    const isPortrait = orientation == 'portrait'
     return (
-      <Animated.View pointerEvents="box-none" style={{
+      <Animated.View pointerEvents='box-none' style={{
         flex: 1,
-        flexDirection: isPortrait ? "column" : "row",
+        flexDirection: isPortrait ? 'column' : 'row',
         transform: this.XY.getTranslateTransform()}}>
-        <View pointerEvents="box-none" style={{flex: 4}}>
+        <View pointerEvents='box-none' style={{flex: 4}}>
           <Question realm={realm}/>
         </View>
-        <View pointerEvents="box-none" style={{flex: 5}}>
+        <View pointerEvents='box-none' style={{flex: 5}}>
           {choices(realm)}
         </View>
       </Animated.View>
