@@ -89,16 +89,16 @@ export default class Ivan extends Component {
           position: 'absolute'}} >
         { realm && realm.objects('App')[0].menu && <Menu realm={realm} /> }
         <Animated.View style={{
-          height: wideAspect ? shortSide/5 : shortSide/7,
-          width: wideAspect ? shortSide/5 : shortSide/7,
+          height: wideAspect ? shortSide/6 : shortSide/7,
+          width: wideAspect ? shortSide/6 : shortSide/7,
           transform: this.ivanPosition.getTranslateTransform(),
         }} {...this.panResponder.panHandlers} >  
           <TouchableWithoutFeedback onPress={this.ivanPress}>
             <Animated.Image
               source={require('./menu_burger.png')}
               style={{
-                height: wideAspect ? shortSide/5 : shortSide/7,
-                width: wideAspect ? shortSide/5 : shortSide/7,
+                height: wideAspect ? shortSide/6 : shortSide/7,
+                width: wideAspect ? shortSide/6 : shortSide/7,
                 position:'absolute'
               }}
               resizeMode='contain' />

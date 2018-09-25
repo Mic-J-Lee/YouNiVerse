@@ -15,6 +15,10 @@ export default class FlashCard extends Component {
   }
 
   enterScreen() {
+    const { realm } = this.props
+    realm.write(()=>{
+      realm.objects('RainbowCard')[0].status = 'done entering'
+    })
     const dimensions = Dimensions.get('screen')
     this.XY.setValue({ x: 0, y: -dimensions.height})
     Animated.spring(
@@ -22,7 +26,7 @@ export default class FlashCard extends Component {
       {
         toValue: {x: 0, y: 0},
         useNativeDriver: true,
-        duration: 500,
+        speed: 20,
       }
     ).start(()=>{this.XY.setValue({ x: 0, y: 0})})
   }

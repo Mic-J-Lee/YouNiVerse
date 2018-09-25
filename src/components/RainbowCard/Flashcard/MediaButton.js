@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Dimensions, Image, StyleSheet, TouchableOpacity, View } from 'react-native'
-import Images from '../../../assets/dynamicRequire'
 import Sound from 'react-native-sound'
 
 export default class MediaButton extends Component {
@@ -87,7 +86,7 @@ export default class MediaButton extends Component {
           onPress={this.onPress}
           disabled={disabled || wrong} >
           <Image
-            source={Images[image]}
+            source={{uri: image}}
             style={styles[style]}
           />
           {wrong && <Image
